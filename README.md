@@ -1,1 +1,1 @@
-# GalaxyFront
+# GalaxyFront - Gestion
