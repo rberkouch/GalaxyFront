@@ -11,3 +11,6 @@ npm i jwt-decode
 npm install bootstrap-icons --save
 
 et finir avec un npm install
+
+identifiant : User
+mot de pass : password
