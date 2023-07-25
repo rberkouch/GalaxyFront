@@ -12,6 +12,7 @@ import { FormationsComponent } from './gestion/formations/formations.component';
 import { DocumentsComponent } from './gestion/documents/documents.component';
 import { ModulesComponent } from './gestion/modules/modules.component';
 import { UtilisateursComponent } from './gestion/utilisateurs/utilisateurs.component';
+import { AddUtlisateurComponent } from './getion/utilisateurs/add-utlisateur/add-utlisateur.component';
 
 
 const routes: Routes = [
@@ -25,7 +26,9 @@ const routes: Routes = [
   { path :"formations", component : FormationsComponent},
   { path :"documents", component : DocumentsComponent},
   { path :"modules", component : ModulesComponent},
-  { path :"utilisateurs", component : UtilisateursComponent}
+  { path :"utilisateurs", component : UtilisateursComponent},
+  { path :"adduser", component : AddUtlisateurComponent}
+  
   
 ]}
 ];

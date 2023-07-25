@@ -32,9 +32,11 @@ export class UserService {
     return this.http.get<User[]>(`${this.host}/user/find/`+username);
   }
 
-  public addUser(formData: FormData): Observable<User> {
-    return this.http.post<User>(`${this.host}/user/add`, formData);
+  public addUser(user: User): Observable<User> {
+    return this.http.post<User>(`${this.host}/user/add`, user);
   }
+
+
 
   public updateUser(formData: FormData): Observable<User> {
     return this.http.post<User>(`${this.host}/user/update`, formData);

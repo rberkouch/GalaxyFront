@@ -23,6 +23,8 @@ import { LoginComponent } from "./login/login.component";
 import { NotAuthorizedComponent } from "./not-authorized/not-authorized.component";
 import { UserComponent } from "./user/user.component";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddUtlisateurComponent } from './getion/utilisateurs/add-utlisateur/add-utlisateur.component';
+import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
 
 
 
@@ -41,10 +43,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UtilisateursComponent,
     FormationsComponent,
     ModulesComponent,
-    DocumentsComponent
+    DocumentsComponent,
+    AddUtlisateurComponent
   ],
   imports: [
     
+   
     BrowserModule,
     AppRoutingModule,
     FormsModule,

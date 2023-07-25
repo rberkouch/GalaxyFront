@@ -34,6 +34,10 @@ export class UtilisateursComponent implements OnInit {
     );
   }
 
+  goToAddUserPage(){
+    this.router.navigateByUrl("/admin/adduser")
+  }
+
   handleDeleteUser(c: User) {
     let conf = confirm("Are you sure?");
     if(!conf) return;

@@ -10,6 +10,8 @@ npm i jwt-decode
 
 npm install bootstrap-icons --save
 
+npm i ng-multiselect-dropdown
+
 et finir avec un npm install
 
 identifiant : User
