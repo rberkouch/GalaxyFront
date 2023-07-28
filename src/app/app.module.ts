@@ -27,6 +27,8 @@ import { AddUtlisateurComponent } from './getion/utilisateurs/add-utlisateur/add
 import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
 import { AddFormationComponent } from './gestion/formations/add-formation/add-formation.component';
 import { UpdateFormationComponent } from './gestion/formations/update-formation/update-formation.component';
+import { UpdateModuleComponent } from './gestion/modules/update-module/update-module.component';
+import { AddModuleComponent } from "./gestion/modules/add-module/add-module.component";
 
 
 
@@ -48,7 +50,9 @@ import { UpdateFormationComponent } from './gestion/formations/update-formation/
     DocumentsComponent,
     AddUtlisateurComponent,
     AddFormationComponent,
-    UpdateFormationComponent
+    UpdateFormationComponent,
+    AddModuleComponent,
+    UpdateModuleComponent
   ],
   imports: [
     

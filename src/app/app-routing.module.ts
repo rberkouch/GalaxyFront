@@ -15,6 +15,8 @@ import { UtilisateursComponent } from './gestion/utilisateurs/utilisateurs.compo
 import { AddUtlisateurComponent } from './getion/utilisateurs/add-utlisateur/add-utlisateur.component';
 import { AddFormationComponent } from './gestion/formations/add-formation/add-formation.component';
 import { UpdateFormationComponent } from './gestion/formations/update-formation/update-formation.component';
+import { AddModuleComponent } from './gestion/modules/add-module/add-module.component';
+import { UpdateModuleComponent } from './gestion/modules/update-module/update-module.component';
 
 
 const routes: Routes = [
@@ -31,7 +33,9 @@ const routes: Routes = [
   { path :"utilisateurs", component : UtilisateursComponent},
   { path :"adduser", component : AddUtlisateurComponent},
   { path :"addformation", component : AddFormationComponent},
-  { path :"updateformation/:id", component : UpdateFormationComponent}
+  { path :"updateformation/:id", component : UpdateFormationComponent},
+  { path :"addmodule", component : AddModuleComponent},
+  { path :"updatemodule/:id", component : UpdateModuleComponent}
 
 ]}
 ];
