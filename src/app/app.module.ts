@@ -26,6 +26,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddUtlisateurComponent } from './gestion/utilisateurs/add-utlisateur/add-utlisateur.component';
 import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
 import { EditUtilisateurComponent } from './gestion/utilisateurs/edit-utilisateur/edit-utilisateur.component';
+import { AddFormationComponent } from './gestion/formations/add-formation/add-formation.component';
+import { UpdateFormationComponent } from './gestion/formations/update-formation/update-formation.component';
+import { UpdateModuleComponent } from './gestion/modules/update-module/update-module.component';
+import { AddModuleComponent } from "./gestion/modules/add-module/add-module.component";
 
 
 
@@ -46,7 +50,11 @@ import { EditUtilisateurComponent } from './gestion/utilisateurs/edit-utilisateu
     ModulesComponent,
     DocumentsComponent,
     AddUtlisateurComponent,
-    EditUtilisateurComponent
+    EditUtilisateurComponent,
+    AddFormationComponent,
+    UpdateFormationComponent,
+    AddModuleComponent,
+    UpdateModuleComponent
   ],
   imports: [
     
