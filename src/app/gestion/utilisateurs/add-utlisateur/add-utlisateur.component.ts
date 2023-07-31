@@ -22,14 +22,15 @@ export class Role {
 export class AddUtlisateurComponent {
   newUserFormGroup! : FormGroup;
   constructor(private fb : FormBuilder, private userService:UserService, private router:Router) { }
-  selectedRoles = "adaeae";
   ngOnInit(): void {
     this.newUserFormGroup=this.fb.group({
-   
+      firstName : this.fb.control(null, [Validators.required, Validators.minLength(1)]),
+      lastName : this.fb.control(null, [Validators.required, Validators.minLength(1)]),
       username : this.fb.control(null, [Validators.required, Validators.minLength(4)]),
       email : this.fb.control(null,[Validators.required, Validators.email]),
       password : this.fb.control(null, [Validators.required, Validators.minLength(4)]),
-      roles : this.fb.control(null,[Validators.required])
+      roles : this.fb.control(null,[Validators.required]),
+      active : this.fb.control(true,[Validators.required])
     });
   }
 
