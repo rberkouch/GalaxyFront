@@ -61,4 +61,11 @@ export class UtilisateursComponent implements OnInit {
     this.router.navigateByUrl("/customer-accounts/"+customer.userId,{state :customer});
   }
 
+  currentTutorial: any = {};
+  currentIndex = -1;
+  setActiveUser (user: User, index: number): void {
+    this.currentTutorial = user;
+    this.currentIndex = index;
+  }
+
 }
