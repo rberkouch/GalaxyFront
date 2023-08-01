@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Formation } from 'src/app/model/formation';
 import { FormationService } from 'src/app/services/formation.service';
@@ -25,7 +25,8 @@ export class AddModuleComponent implements OnInit {
           moduleName: this.fb.control(null, [Validators.required, Validators.minLength(4)]),
           operationDate: this.fb.control(null, [Validators.required]),
           imageUrl: this.fb.control(null),
-          formations: this.fb.control(this.listeFormation)
+          formations: this.fb.control(this.listeFormation),
+          documents: this.fb.array([])
         }
       )
     });
@@ -35,5 +36,23 @@ export class AddModuleComponent implements OnInit {
   saveModule()
   {
     this.moduleService.addModule(this.moduleForm.value).subscribe(() => this.router.navigateByUrl("admin/modules"));
+  }
+
+  get documents() {
+    return this.moduleForm.get('documents') as FormArray;
+  }
+
+  ajouterDocument() {
+    const document = this.fb.group({
+      documentName: ['', Validators.required],
+      operationDate: ['', Validators.required],
+      documentUrl: ['']
+    });
+
+    this.documents.push(document);
+  }
+
+  supprimerDocument(index: number) {
+    this.documents.removeAt(index);
   }
 }

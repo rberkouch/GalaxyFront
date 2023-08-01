@@ -1,5 +1,5 @@
 <section class="h-100 bg-dark">
-    <form [formGroup]="moduleForm" (ngSubmit)="saveModule()">
+    <form [formGroup]="moduleForm">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col">
@@ -50,9 +50,36 @@
                       <label class="form-label" for="formations">Formations</label>
                     </div>                    
                   </div>
+                  
+                  <div class="row mb-4">
+                    <div formArrayName="documents" class="form-outline mb-4">
+                      <div *ngFor="let document of documents.controls; let i = index" [formGroupName]="i">
+                        <div class="row">
+                          <div class="form-outline mb-4">
+                            <input formControlName="documentName" type="text" class="form-control form-control-lg" />
+                            <label class="form-label" for="documentName">Nom du document {{i+1}}</label>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="form-outline mb-4">
+                            <input formControlName="operationDate" type="date" class="form-control form-control-lg" />
+                            <label class="form-label" for="operationDate">Date</label>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="form-outline mb-4">
+                            <input formControlName="documentUrl" type="text" class="form-control form-control-lg" />
+                            <label class="form-label" for="documentUrl">Url du document {{i+1}}</label>
+                          </div>
+                        </div>
+                        <button class="btn btn-danger btn-lg ms-2" (click)="supprimerDocument(i)">Supprimer document {{i+1}}</button>
+                      </div>
+                    </div>
+                    <button class="btn btn-primary btn-lg ms-2" (click)="ajouterDocument()">Ajouter un document</button>
+                  </div>
 
                   <button type="reset" class="btn btn-danger btn-lg ms-2">Annuler</button>
-                  <button [disabled]="!moduleForm.valid" class="btn btn-success btn-lg ms-2">Ajouter</button>
+                  <button [disabled]="!moduleForm.valid" class="btn btn-success btn-lg ms-2" (click)="saveModule()">Ajouter</button>
                   
                 </div>
               </div>
