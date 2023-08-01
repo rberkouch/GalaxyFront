@@ -1,0 +1,77 @@
+<div class="container">
+    <div class="card col-md-6 offset-3 mt-2">
+      <div class="card-header">Modifier un utilisateur</div>
+      <div class="card-body">
+        <form [formGroup]="newUserFormGroup" (ngSubmit)="handleSaveUser()">
+          <div class="mb-3">
+            <label class="form-label">Prénom :</label>
+            <input type="text" formControlName="firstName" class="form-control">
+            <span class="text-danger"
+                  *ngIf="newUserFormGroup?.controls['firstName'].touched
+                  && newUserFormGroup?.controls['firstName'].errors
+                  && newUserFormGroup?.controls['firstName'].errors!['required']">
+              usernameis Required
+            </span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Nom de famille :</label>
+            <input type="text" formControlName="lastName" class="form-control">
+            <span class="text-danger"
+                  *ngIf="newUserFormGroup.controls['lastName'].touched
+                  && newUserFormGroup.controls['lastName'].errors
+                  && newUserFormGroup.controls['lastName'].errors!['required']">
+              usernameis Required
+            </span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Nom d'utilisateur :</label>
+            <input type="text" formControlName="username" class="form-control">
+            <span class="text-danger"
+                  *ngIf="newUserFormGroup.controls['username'].touched
+                  && newUserFormGroup.controls['username'].errors
+                  && newUserFormGroup.controls['username'].errors!['required']">
+              usernameis Required
+            </span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email:</label>
+            <input type="text" formControlName="email" class="form-control">
+            <span class="text-danger"
+                  *ngIf="newUserFormGroup.controls['email'].touched
+                  && newUserFormGroup.controls['email'].errors
+                  && newUserFormGroup.controls['email'].errors!['email']">
+              Email is not valid
+            </span>
+          </div>
+
+          <div class="mb-3">
+            <label for="roles" class="form-label">Définition des rôles : </label>
+  
+            <select class="form-control" type="number" formControlName="roles" multiple>
+              <option *ngFor="let level of list_role" [ngValue]="level">{{level.role}}</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="roles" class="form-label">Compte actif : </label>
+            <div class="form-check">
+              <input class="form-check-input" formControlName="active" type="radio" name="active" [value]="true" >
+              <label class="form-check-label" for="flexRadioDefault1">
+                Oui
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" formControlName="active" type="radio" name="active" [value]="false"  >
+              <label class="form-check-label" for="flexRadioDefault2">
+                Non
+              </label>
+            </div>
+          </div>
+          <div class="d-flex flex-row-reverse bd-highlight">
+            <div class="p-2 bd-highlight">   <button [disabled]="!newUserFormGroup.valid" class="btn btn-info btn-right">Enregistrer</button></div>
+          </div>
+       
+        </form>
+      </div>
+    </div>
+  </div>
+
