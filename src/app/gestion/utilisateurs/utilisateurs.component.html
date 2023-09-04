@@ -1,0 +1,82 @@
+<div class="container mt-2">
+    <ng-container *ngIf="users | async as listCustomers; else failureOrLading">
+      <div class="card">
+        <div class="card-header">
+          <div class="container row">
+          <div class="col">
+            <h4>Utilisateurs</h4>
+          </div>
+          <div class="col">
+            <button class="btn btn-success" (click)="goToAddUserPage()"> <i class="bi bi-plus "></i>  Ajouter un utilisateur  </button>
+          </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div *ngIf="searchFormGroup">
+            <form [formGroup]="searchFormGroup" (ngSubmit)="handleSearchUsers()">
+              <div class="input-group">
+                <label class="input-group-text">Recherche par nom de famille :</label>
+                <input type="text" formControlName="keyword" class="form-control">
+                <button class="btn btn-info">
+                  <i class="bi bi-search"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Photo de profil </th>
+              <th>ID </th>
+              <th>Prénom </th>
+              <th>Nom de famille </th>
+              <th>Nom d'utilisateur </th>
+              <th>Email </th>
+              <th>Compte actif </th>
+              <th>Role </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let c of users | async">
+              <td>
+                <img [src]="'https://robohash.org/' + c.userId" width="50" alt="">
+              </td>
+              <td>{{c.userId}}</td>
+              <td>{{c.firstName}}</td>
+              <td>{{c.lastName}}</td>
+              <td>{{c.username}}</td>
+              <td>{{c.email}}</td>
+              <td>{{c.active ? "Oui" : "Non"}}</td>
+              <td>
+                <ul class="list-group" >
+                  <li class="list-group-item" *ngFor="let role of c.roles">{{role.role}}</li>
+                </ul>
+              </td>
+              <td>
+                <button (click)="handleDeleteUser(c)" class="btn btn-danger">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+              <td>
+                <button routerLink="/admin/edituser/{{c.username}}" class="btn btn-success">
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #failureOrLading>
+      <ng-container *ngIf="errorMessage; else loading">
+        <div class="text-danger">
+          {{errorMessage}}
+        </div>
+      </ng-container>
+      <ng-template #loading>
+        Loading .....
+      </ng-template>
+    </ng-template>
+  </div>
+

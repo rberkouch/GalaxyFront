@@ -1,0 +1,35 @@
+<section style="background-color: #eee;">
+    <button class="btn btn-primary float-end me-5" (click)="ajouterSujet()">Ajouter un projet</button>
+      <div id="etus" class="text-center container py-5">      
+        <h1><strong>Les sujets</strong></h1>
+        
+    
+        <div class="row" >
+            <div class="col-md-3 my-3" *ngFor="let s of sujets"> 
+            <div class="card">
+              <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
+                  <div class="mask">
+                    <div class="d-flex justify-content-start align-items-end h-100">
+                      <h5><span class="badge bg-success ms-2">{{s.id}}</span></h5>
+                    </div>
+                  </div>
+                  <div class="hover-overlay">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                  </div>
+              </div>
+              <div class="card-body">
+                <h2 class="card-title mb-3">{{s.title}}</h2>
+                <h6 class="mb-3"></h6>
+
+                <button type="button" class="btn btn-warning me-1" (click)="afficherSujet(s.id)">Consulter</button>
+                <button type="button" class="btn btn-danger" (click)="supprimerSujet(s.id)">Supprimer</button>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </section>
+
+
+  

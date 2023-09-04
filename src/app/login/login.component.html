@@ -1,0 +1,43 @@
+<!-- <div class="" style="width: 30%; margin:auto; margin-top: 5%;">
+    <div class="card">
+        <div class="card_header">Authentification</div>
+        <div class="card-body">
+            <form [formGroup]="formLogin" (ngSubmit)="handleLogin()">
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-control" formControlName="username">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="text" class="form-control" formControlName="password">
+                </div>
+                <button class="btn btn-success">Login</button>
+            </form>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="bg"></div>
+
+<div class="star-field">
+<div class="layer"></div>
+<div class="layer"></div>
+<div class="layer"></div>
+
+<div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
+<form [formGroup]="formLogin" (ngSubmit)="handleLogin()">
+    <h3>IntiGalaxy</h3>
+
+    <label for="username">Identifiant</label>
+    <input type="text" placeholder="" id="username" formControlName="username"> 
+
+    <label for="password">Mot de passe</label>
+    <input type="password" placeholder="" id="password" formControlName="password">
+
+    <button>Se connecter</button>
+
+</form>
