@@ -18,6 +18,10 @@ import { AddFormationComponent } from './gestion/formations/add-formation/add-fo
 import { UpdateFormationComponent } from './gestion/formations/update-formation/update-formation.component';
 import { AddModuleComponent } from './gestion/modules/add-module/add-module.component';
 import { UpdateModuleComponent } from './gestion/modules/update-module/update-module.component';
+import { SujetComponent } from './projets/sujet/sujet.component';
+import { LivrableComponent } from './projets/livrable/livrable.component';
+import { AfficherSujetComponent } from './projets/sujet/afficher-sujet/afficher-sujet.component';
+import { AddSujetComponent } from './projets/sujet/add-sujet/add-sujet.component';
 
 
 const routes: Routes = [
@@ -37,7 +41,11 @@ const routes: Routes = [
   { path :"addformation", component : AddFormationComponent},
   { path :"updateformation/:id", component : UpdateFormationComponent},
   { path :"addmodule", component : AddModuleComponent},
-  { path :"updatemodule/:id", component : UpdateModuleComponent}
+  { path :"updatemodule/:id", component : UpdateModuleComponent},
+  { path :"affichersujet/:id", component : AfficherSujetComponent},
+  { path :"addsujet", component : AddSujetComponent},
+  { path :"sujet", component : SujetComponent},
+  { path :"livrable", component : LivrableComponent}
 
 ]}
 ];
