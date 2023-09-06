@@ -1,3 +1,4 @@
+import { Niveau } from "../enum/niveau.enum";
 import { User } from "./user";
 
 export class DocumentProjet {
@@ -6,5 +7,6 @@ export class DocumentProjet {
 	title!:string;
 	description!:string;
 	timeConstraint!:number;
+	niveau!:Niveau;
     utilisateurs!:User[];
 }

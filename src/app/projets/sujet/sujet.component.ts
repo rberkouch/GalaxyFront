@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Sujet } from 'src/app/model/sujet';
 import { SujetService } from 'src/app/services/sujet.service';
 
 
@@ -20,9 +21,11 @@ export class SujetComponent implements OnInit{
   supprimerSujet(id:number){
     this.sujetService.deleteSujet(id).subscribe(()=>{this.getSujets()});
   }
-  afficherSujet(id:number)
+  afficherSujet(sujet:Sujet)
   {
-    this.router.navigateByUrl("/admin/affichersujet/" + id);
+    localStorage.removeItem("editSujetId");
+    localStorage.setItem("editSujetId",sujet.id.toString());
+    this.router.navigateByUrl("/admin/affichersujet/" + sujet.id);
   }
   ajouterSujet()
   {
