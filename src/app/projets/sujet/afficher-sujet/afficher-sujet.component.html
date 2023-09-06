@@ -1,15 +1,15 @@
 <section style="background-color: #eee;">
+      <button class="btn btn-outline-danger float-end me-5" (click)="generatePDF()"><span class="bi bi-file-pdf"></span>PDF</button>
       <div id="etus" class="text-center container py-5">      
-        <h1><strong>Sujet</strong></h1>
-        
-    
         <div class="row" >
-            <div class="col-md-3 my-3"> 
+            <div> 
             <div class="card">
               <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
                   <div class="mask">
                     <div class="d-flex justify-content-start align-items-end h-100">
-                      <h5><span class="badge bg-success ms-2">Projet 1</span></h5>
+                      <h5><img src="/assets/img/logo_inti.png" width="120" height="120" alt="Logo INTI"></h5>
+                    </div>
+                    <div>
                     </div>
                   </div>
                   <div class="hover-overlay">
@@ -17,10 +17,26 @@
                   </div>
               </div>
               <div class="card-body">
-                <h2 class="card-title mb-3">Projet 1 </h2>
-                <h6 class="mb-3">Projet 1</h6>
-
-                <button type="button" class="btn btn-warning me-1" (click)="generatePDF()">PDF</button>
+                <h2 class="card-title">{{sujet.title}}</h2>
+                <h6 class="card-title">{{sujet.timeConstraint}} jour(s)</h6>
+                <br><br><br><br><br><br><br><br><br><br><br>
+                <h6 class="card-title" [align]="alignement" style="color:green;">Titre du Projet :</h6>
+                <p [align]="alignement">{{sujet.title}}</p>
+                <h6 class="card-title" [align]="alignement" style="color:green;">Contraintes de temps :</h6>
+                <p [align]="alignement">Ce projet est prévu pour être réalisé en {{sujet.timeConstraint}} jour(s). Il est important de bien gérer le temps et de
+                  prioriser les fonctionnalités essentielles pour assurer une livraison réussie dans les délais impartis.
+                  </p>
+                <h6 class="card-title" [align]="alignement" style="color:green;">Description du Projet :</h6>
+                <p [align]="alignement">{{sujet.description}}</p>
+                <h6 class="card-title" [align]="alignement" style="color:green;">Fonctionnalités attendues :</h6>
+                <p [align]="alignement">{{sujet.functionality}}</p>
+                <h6 class="card-title" [align]="alignement" style="color:green;">Exigences techniques :</h6>
+                <p [align]="alignement">{{sujet.stackTechnique}}</p>
+                <h6 class="card-title" [align]="alignement" style="color:green;">Livraison attendue :</h6>
+                <p [align]="alignement">{{sujet.expectedDelivery}}</p>
+                <h6 class="card-title" [align]="alignement" style="color:green;">Évaluation du développeur :</h6>
+                <p [align]="alignement">{{sujet.developerRating}}</p>
+                <button type="button" class="btn btn-warning me-1" (click)="afficherAllSujets()">Retour vers la liste des sujets</button>
               </div>
             </div>
           </div>
