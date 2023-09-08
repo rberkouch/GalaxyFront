@@ -1,4 +1,4 @@
-import { Formation } from "./formation";
+import { Formation } from './formation';
 
 export class ModuleFormation {
   id!: number;

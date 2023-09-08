@@ -8,34 +8,39 @@ import { ModuleFormationService } from 'src/app/services/module-formation.servic
 @Component({
   selector: 'app-add-module',
   templateUrl: './add-module.component.html',
-  styleUrls: ['./add-module.component.css']
+  styleUrls: ['./add-module.component.css'],
 })
 export class AddModuleComponent implements OnInit {
+  constructor(
+    private moduleService: ModuleFormationService,
+    private fb: FormBuilder,
+    private router: Router,
+    private formationService: FormationService
+  ) {}
 
-  constructor(private moduleService : ModuleFormationService, private fb:FormBuilder, private router:Router, private formationService : FormationService) {}
-
-  moduleForm!:FormGroup;
-  listeFormation!:Formation[];
+  moduleForm!: FormGroup;
+  listeFormation!: Formation[];
 
   ngOnInit(): void {
-    this.formationService.getFormations().subscribe(data => {
+    this.formationService.getFormations().subscribe((data) => {
       this.listeFormation = data;
-      this.moduleForm = this.fb.group(
-        {
-          moduleName: this.fb.control(null, [Validators.required, Validators.minLength(4)]),
-          operationDate: this.fb.control(null, [Validators.required]),
-          imageUrl: this.fb.control(null),
-          formations: this.fb.control(this.listeFormation),
-          documents: this.fb.array([])
-        }
-      )
+      this.moduleForm = this.fb.group({
+        moduleName: this.fb.control(null, [
+          Validators.required,
+          Validators.minLength(4),
+        ]),
+        operationDate: this.fb.control(null, [Validators.required]),
+        imageUrl: this.fb.control(null),
+        formations: this.fb.control(this.listeFormation),
+        documents: this.fb.array([]),
+      });
     });
-    
   }
 
-  saveModule()
-  {
-    this.moduleService.addModule(this.moduleForm.value).subscribe(() => this.router.navigateByUrl("admin/modules"));
+  saveModule() {
+    this.moduleService
+      .addModule(this.moduleForm.value)
+      .subscribe(() => this.router.navigateByUrl('admin/modules'));
   }
 
   get documents() {
@@ -46,7 +51,7 @@ export class AddModuleComponent implements OnInit {
     const document = this.fb.group({
       documentName: ['', Validators.required],
       operationDate: ['', Validators.required],
-      documentUrl: ['']
+      documentUrl: [''],
     });
 
     this.documents.push(document);

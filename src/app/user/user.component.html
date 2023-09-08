@@ -1,4 +1,3 @@
-
 <section style="background-color: #eee;">
   <div class="container py-5">
     <!-- <div class="row">
@@ -14,8 +13,8 @@
       </div> -->
     <div class="input-group mb-2">
       <div class="input-group-prepend">
-      
-       
+
+
       </div>
 
     </div>
@@ -23,89 +22,89 @@
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-            <img [src]="'https://robohash.org/' + selectedUser.userId" alt="avatar"
-              class="rounded-circle img-fluid" style="width: 150px;">
+            <img [src]="'https://robohash.org/' + selectedUser.userId" alt="avatar" class="rounded-circle img-fluid"
+              style="width: 150px;">
             <h5 class="my-3">{{selectedUser.firstName}} {{selectedUser.lastName}}</h5>
           </div>
         </div>
-    
+
       </div>
       <div class="col-lg-8">
         <div class="card mb-4">
           <div class="card-body">
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Prénom</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{selectedUser.firstName}} </p>
-                </div>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Prénom</p>
               </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Nom</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{selectedUser.lastName}}</p>
-                </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{selectedUser.firstName}} </p>
               </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Pseuso</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{selectedUser.username}}</p>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Emaill</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{selectedUser.email}}</p>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Role</p>
-                </div>
-                <div class="col-sm-9">
-                  <ul class="list-group">
-                    <li class="list-group-item" *ngFor="let u of selectedUser.roles">{{u.role}}</li>
-                  </ul>
-                </div>
-              </div>
-                <hr>
-
-
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Profil actif </p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{selectedUser.active?"Oui":"Non"}}</p>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Documents</p>
-                </div>
-                <div class="col-sm-9">
-                  <!-- File to place in a componant -->
-                  <app-file-upload></app-file-upload>
-                </div>
-              </div>
-              <hr>
             </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Nom</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{selectedUser.lastName}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Pseuso</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{selectedUser.username}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Emaill</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{selectedUser.email}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Role</p>
+              </div>
+              <div class="col-sm-9">
+                <ul class="list-group">
+                  <li class="list-group-item" *ngFor="let u of selectedUser.roles">{{u.role}}</li>
+                </ul>
+              </div>
+            </div>
+            <hr>
+
+
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Profil actif </p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{selectedUser.active?"Oui":"Non"}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Documents</p>
+              </div>
+              <div class="col-sm-9">
+                <!-- File to place in a componant -->
+                <app-file-upload></app-file-upload>
+              </div>
+            </div>
+            <hr>
           </div>
         </div>
-
       </div>
+
     </div>
+  </div>
 
 </section>

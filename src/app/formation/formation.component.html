@@ -1,15 +1,15 @@
 <div *ngFor="let formation of formations">
-<div class="ag-format-container">
+  <div class="ag-format-container">
     <div class="ag-courses_box">
       <div *ngFor="let formation of formations" class="ag-courses_item">
         <!-- <a  (click)="formationDetails(formation.id)" class="ag-courses-item_link" routerLink=""> -->
-            <a   class="ag-courses-item_link" [routerLink]="['/admin/formation-details', formation.id]">
+        <a class="ag-courses-item_link" [routerLink]="['/admin/formation-details', formation.id]">
           <div class="ag-courses-item_bg"></div>
-  
+
           <div class="ag-courses-item_title">
             {{formation.formationName}}
           </div>
-  
+
           <!-- <div class="ag-courses-item_date-box">
             Start:
             <span class="ag-courses-item_date">
@@ -18,10 +18,9 @@
           </div> -->
         </a>
       </div>
-  
-      
-  
+
+
+
     </div>
   </div>
 </div>
-
