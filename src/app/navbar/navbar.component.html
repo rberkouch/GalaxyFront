@@ -1,4 +1,3 @@
-
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <!-- Container wrapper -->
@@ -20,59 +19,57 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Navbar brand -->
       <a class="navbar-brand mt-2 mt-lg-0" href="#">
-   <h1>GALAXY</h1>
+        <h1>GALAXY</h1>
       </a>
       <!-- Left links -->
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
 
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/admin/formation">Les formations</a>
-          </li>
- 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Gestions
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" routerLink="/admin/utilisateurs">Utilisateurs</a></li>
-              <li><a class="dropdown-item" routerLink="/admin/formations">Formations</a></li>
-              <li *ngIf="authService.roles.includes('ADMIN')"><a class="dropdown-item" routerLink="/admin/modules">Modules</a></li>
-              <li><a class="dropdown-item" routerLink="/admin/documents">Documents</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Les projets
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" routerLink="/admin/sujet">Sujet</a></li>
-              <li><a class="dropdown-item" routerLink="/admin/livrable">Livrable</a></li>
-            </ul>
-          </li>
-        </ul>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin/formation">Les formations</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Gestions
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" routerLink="/admin/utilisateurs">Utilisateurs</a></li>
+            <li><a class="dropdown-item" routerLink="/admin/formations">Formations</a></li>
+            <li *ngIf="authService.roles.includes('ADMIN')"><a class="dropdown-item"
+                routerLink="/admin/modules">Modules</a></li>
+            <li><a class="dropdown-item" routerLink="/admin/documents">Documents</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Les projets
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" routerLink="/admin/sujet">Sujet</a></li>
+            <li><a class="dropdown-item" routerLink="/admin/livrable">Livrable</a></li>
+          </ul>
+        </li>
+      </ul>
       <!-- Left links -->
     </div>
     <!-- Collapsible wrapper -->
     <ul class="navbar" *ngIf="authService.isAuthenticated==true">
 
       <li class="nav-item me-2" style="list-style-type: none;" (click)="goToUserProfile()">
-      <div style="cursor: pointer;">
-                 {{this.authService.username}}          <img
-                 [src]="'https://robohash.org/' + selectedUser.userId"
-        class="rounded-circle"
-        height="25"
-        alt="Black and White Portrait of a Man"
-        loading="lazy"
-      />    
-      </div>
-      
+        <div style="cursor: pointer;">
+          {{this.authService.username}} <img [src]="'https://robohash.org/' + selectedUser.userId"
+            class="rounded-circle" height="25" alt="Black and White Portrait of a Man" loading="lazy" />
+        </div>
+
       </li>
-      <li class="nav-item m-2" style="list-style-type: none;" >
+      <li class="nav-item m-2" style="list-style-type: none;">
         <a (click)="handleLogout()" class="btn btn btn-outline-secondary btn-sm">Se déconecter</a>
       </li>
-      
-      </ul>
+
+    </ul>
     <!-- Right elements -->
 
     <!-- Right elements -->

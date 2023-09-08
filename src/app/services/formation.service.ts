@@ -5,32 +5,40 @@ import { environment } from 'src/environments/environment';
 import { Formation } from '../model/formation';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FormationService {
-
-  formationId : any;
+  formationId: any;
 
   constructor(private http: HttpClient) {}
 
-  public getFormations():Observable<Formation[]>{
-    return this.http.get<Formation[]>(environment.backendHost+"/formations")
+  public getFormations(): Observable<Formation[]> {
+    return this.http.get<Formation[]>(environment.backendHost + '/formations');
   }
 
-  public getFormationById(idFormation : number ){
-    return this.http.get<any>(environment.backendHost+"/formations/"+idFormation)
+  public getFormationById(idFormation: number) {
+    return this.http.get<any>(
+      environment.backendHost + '/formations/' + idFormation
+    );
   }
 
   public addFormation(formation: Formation): Observable<Formation> {
-    return this.http.post<Formation>(environment.backendHost + "/addFormation", formation);
+    return this.http.post<Formation>(
+      environment.backendHost + '/addFormation',
+      formation
+    );
   }
 
-  public deleteFormation(id:number):Observable<void>
-  {
-    return this.http.delete<void>(environment.backendHost + "/deleteFormation/" + id);
+  public deleteFormation(id: number): Observable<void> {
+    return this.http.delete<void>(
+      environment.backendHost + '/deleteFormation/' + id
+    );
   }
 
   public updateFormation(formation: Formation): Observable<void> {
-    return this.http.put<void>(environment.backendHost + "/updateFormation", formation);
+    return this.http.put<void>(
+      environment.backendHost + '/updateFormation',
+      formation
+    );
   }
 }
