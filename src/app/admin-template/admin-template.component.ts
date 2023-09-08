@@ -12,7 +12,7 @@ export class AdminTemplateComponent implements OnInit {
   constructor(private authService : AuthService, private router : Router) { }
 
   ngOnInit(): void {
-    this.router.navigateByUrl("/formation")
+    this.router.navigateByUrl("/admin/formation")
   }
 
 }

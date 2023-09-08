@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Niveau } from 'src/app/enum/niveau.enum';
-import { Sujet } from 'src/app/model/sujet';
+import { Level } from 'src/app/enum/level.enum';
 import { SujetService } from 'src/app/services/sujet.service';
 
 @Component({
@@ -13,8 +12,7 @@ import { SujetService } from 'src/app/services/sujet.service';
 export class AddSujetComponent {
  
   constructor(private sujetService : SujetService, private fb:FormBuilder, private router:Router) {}
-  // sujet:Sujet=new Sujet();
-  niveauType=Object.values(Niveau);
+  levelType=Object.values(Level);
   sujetForm!:FormGroup;
 
   ngOnInit(): void {
@@ -26,7 +24,7 @@ export class AddSujetComponent {
         description: this.fb.control(null, [Validators.required]),
         functionality: this.fb.control(null, [Validators.required]),
         expectedDelivery: this.fb.control(null, [Validators.required]),
-        niveau: this.fb.control(null, [Validators.required]),
+        level: this.fb.control(null, [Validators.required]),
         developerRating: this.fb.control(null, [Validators.required]),
         stackTechnique: this.fb.control(null, [Validators.required]),
       }

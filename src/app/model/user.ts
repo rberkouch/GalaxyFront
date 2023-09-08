@@ -8,7 +8,6 @@ export class User {
   public active: boolean;
   public roles: any;
 
-
   constructor() {
     this.userId = '';
     this.firstName = '';
@@ -18,7 +17,5 @@ export class User {
     this.profileImageUrl = '';
     this.active = false;
     this.roles = null;
-
   }
-
 }

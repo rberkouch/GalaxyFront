@@ -27,13 +27,78 @@ ngOnInit(): void {
   this.sujetService.getSujetById(+sujetId).
   subscribe(data => {this.sujet=data; console.log("data="+data)}); 
 }
-generatePDF() {  
+generatePDF(sujet:Sujet,action = 'open') {  
   let docDefinition = {  
-    header: 'Test',  
-    content: 'TestPDF'  
+    header: [{
+    text:`${sujet.title}`,
+    alignement:'center',
+    fontSize: 30
+  }],
+    content: [ 
+      {
+        text:`${sujet.timeConstraint} jour(s)`,
+        alignement:'center',
+        fontSize: 20,
+        color:'red'
+      },
+    {text: 'Titre du projet',
+    fontSize: 16,
+    alignment: 'left',
+    color: 'green'},
+    {text: `${sujet.title}`,
+    fontSize: 16,
+    alignment: 'left'},
+    {text: 'Contraintes de temps :',
+    fontSize: 16,
+    alignment: 'left',
+    color: 'green'},
+    {text: `Ce projet est prévu pour être réalisé en ${sujet.timeConstraint} jour(s). Il est important de bien gérer le temps et de prioriser les fonctionnalités essentielles pour assurer une livraison réussie dans les délais impartis.`,
+    fontSize: 16,
+    alignment: 'left'},
+    {text: 'Description du Projet :',
+    fontSize: 16,
+    alignment: 'left',
+    color: 'green'}, 
+    {text: `${sujet.description}`,
+    fontSize: 16,
+    alignment: 'left'},
+    {text: 'Fonctionnalités attendues :',
+    fontSize: 16,
+    alignment: 'left',
+    color: 'green'}, 
+    {text: `${sujet.functionality}`,
+    fontSize: 16,
+    alignment: 'left'},
+    {text: 'Exigences techniques :',
+    fontSize: 16,
+    alignment: 'left',
+    color: 'green'}, 
+    {text: `${sujet.stackTechnique}`,
+    fontSize: 16,
+    alignment: 'left'},
+    {text: 'Livraison attendue :',
+    fontSize: 16,
+    alignment: 'left',
+    color: 'green'}, 
+    {text: `${sujet.expectedDelivery}`,
+    fontSize: 16,
+    alignment: 'left'},
+    {text: 'Évaluation du développeur :',
+    fontSize: 16,
+    alignment: 'left',
+    color: 'green'}, 
+    {text: `${sujet.developerRating}`,
+    fontSize: 16,
+    alignment: 'left'}] 
   };  
  
-  pdfMake.createPdf(docDefinition).open();  
+  if(action==='download'){
+    pdfMake.createPdf(docDefinition as any).download();
+  }else if(action === 'print'){
+    pdfMake.createPdf(docDefinition as any).print();      
+  }else{
+    pdfMake.createPdf(docDefinition as any).open();      
+  }
 }  
 afficherAllSujets()
   {
