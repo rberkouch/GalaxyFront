@@ -30,9 +30,15 @@
   
                   <div class="row">
                     <div class="form-outline mb-4">
-                    <input type="date" id="operationDate" class="form-control form-control-lg" formControlName="operationDate" />
-                    <label class="form-label" for="operationDate">Date</label>
-                    </div>              
+                    <label class="form-label" for="operationDate">Date d'ajout</label>  
+                    <input type="date" id="operationDate" class="form-control form-control-lg" formControlName="operationDate" />                    
+                    <span class="text-danger"
+                          *ngIf="sujetForm.controls['operationDate'].touched
+                          && sujetForm.controls['operationDate'].errors
+                          && sujetForm.controls['operationDate'].errors!['required']">
+                          Le champ date d'ajout est obligatoire
+                      </span>
+                  </div>              
                   </div>
                   <div class="row">
                     <div class="form-outline mb-4">
@@ -48,11 +54,17 @@
                 </div>
                 <div class="row">
                   <div class="form-outline mb-4">
-                    <label class="form-label" for="niveau">Niveau</label>
-                    <select id="niveau" class="form-control form-control-lg" formControlName="niveau">
-                      <option [ngValue]="null">Select one...</option>
-                      <option *ngFor="let niveau of niveauType | keyvalue" [ngValue]="niveau.value">{{niveau.value}}</option>
+                    <label class="form-label" for="level">Niveau</label>
+                    <select id="level" class="form-control form-control-lg" formControlName="level">
+                      <option [ngValue]="null">Choisir un...</option>
+                      <option *ngFor="let level of levelType | keyvalue" [ngValue]="level.value">{{level.value}}</option>
                     </select>
+                    <span class="text-danger"
+                    *ngIf="sujetForm.controls['level'].touched
+                    && sujetForm.controls['level'].errors
+                    && sujetForm.controls['level'].errors!['required']">
+                    Le champ niveau est obligatoire
+                </span>
                   </div>                    
               </div>
                 <div class="row">

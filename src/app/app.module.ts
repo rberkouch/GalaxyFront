@@ -24,7 +24,6 @@ import { NotAuthorizedComponent } from "./not-authorized/not-authorized.componen
 import { UserComponent } from "./user/user.component";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddUtlisateurComponent } from './gestion/utilisateurs/add-utlisateur/add-utlisateur.component';
-import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
 import { EditUtilisateurComponent } from './gestion/utilisateurs/edit-utilisateur/edit-utilisateur.component';
 import { AddFormationComponent } from './gestion/formations/add-formation/add-formation.component';
 import { UpdateFormationComponent } from './gestion/formations/update-formation/update-formation.component';
@@ -62,22 +61,20 @@ import { AddSujetComponent } from './projets/sujet/add-sujet/add-sujet.component
     SujetComponent,
     LivrableComponent,
     AfficherSujetComponent,
-    AddSujetComponent
+    AddSujetComponent,
   ],
   imports: [
-    
-   
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
     PdfViewerModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [
-    {provide : HTTP_INTERCEPTORS, useClass : AppHttpInterceptor, multi : true}
+    { provide: HTTP_INTERCEPTORS, useClass: AppHttpInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -25,29 +25,33 @@ import { AddSujetComponent } from './projets/sujet/add-sujet/add-sujet.component
 
 
 const routes: Routes = [
-  { path :"login", component : LoginComponent},
-  { path :"", redirectTo : "/login",pathMatch:"full" },
-  { path :"admin", component : AdminTemplateComponent , canActivate : [AuthenticationGuard], children : [  
-  { path :"notAuthorized", component : NotAuthorizedComponent},
-  { path :"user", component : UserComponent},
-  { path :"formation", component : FormationComponent},
-  { path :"formation-details/:id", component : FormationDetailsComponent},
-  { path :"formations", component : FormationsComponent},
-  { path :"documents", component : DocumentsComponent},
-  { path :"modules", component : ModulesComponent},
-  { path :"utilisateurs", component : UtilisateursComponent},
-  { path :"adduser", component : AddUtlisateurComponent},
-  { path :"edituser/:username", component : EditUtilisateurComponent},
-  { path :"addformation", component : AddFormationComponent},
-  { path :"updateformation/:id", component : UpdateFormationComponent},
-  { path :"addmodule", component : AddModuleComponent},
-  { path :"updatemodule/:id", component : UpdateModuleComponent},
-  { path :"affichersujet/:id", component : AfficherSujetComponent},
-  { path :"addsujet", component : AddSujetComponent},
-  { path :"sujet", component : SujetComponent},
-  { path :"livrable", component : LivrableComponent}
-
-]}
+  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  {
+    path: 'admin',
+    component: AdminTemplateComponent,
+    canActivate: [AuthenticationGuard],
+    children: [
+      { path: 'notAuthorized', component: NotAuthorizedComponent },
+      { path: 'utilisateurs', component: UtilisateursComponent },
+      { path: 'user', component: UserComponent },
+      { path: 'adduser', component: AddUtlisateurComponent },
+      { path: 'edituser/:username', component: EditUtilisateurComponent },
+      { path: 'formations', component: FormationsComponent },
+      { path: 'formation', component: FormationComponent },
+      { path: 'formation-details/:id', component: FormationDetailsComponent },
+      { path: 'addformation', component: AddFormationComponent },
+      { path: 'updateformation/:id', component: UpdateFormationComponent },
+      { path: 'documents', component: DocumentsComponent },
+      { path: 'modules', component: ModulesComponent },
+      { path: 'addmodule', component: AddModuleComponent },
+      { path: 'updatemodule/:id', component: UpdateModuleComponent },
+      { path: 'sujet', component: SujetComponent },
+      { path: 'affichersujet/:id', component: AfficherSujetComponent },
+      { path: 'addsujet', component: AddSujetComponent },
+      { path: 'livrable', component: LivrableComponent },
+    ],
+  },
 ];
 
 @NgModule({
