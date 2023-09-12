@@ -79,6 +79,7 @@ export class UserService {
     );
   }
 
+  
   public deleteUser(id: string) {
     return this.http.delete(environment.backendHost + '/user/' + id);
   }

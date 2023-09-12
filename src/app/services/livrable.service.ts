@@ -29,4 +29,10 @@ export class LivrableService {
   public updateLivrable(livrable: Livrable): Observable<any> {
     return this.http.put(environment.backendHost + '/livrables', livrable);
   }
+
+  public searchLivrable(keyword: string): Observable<any> {
+    return this.http.get<any>(
+      environment.backendHost + '/livrables/search?keyword=' + keyword
+    );
+  }
 }
