@@ -26,6 +26,7 @@ export class UtilisateursComponent implements OnInit {
     });
     this.handleSearchUsers();
   }
+
   handleSearchUsers() {
     let kw = this.searchFormGroup?.value.keyword;
     this.users = this.userService.searchUsers(kw).pipe(

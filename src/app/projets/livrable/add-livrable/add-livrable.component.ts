@@ -24,10 +24,8 @@ export class AddLivrableComponent {
       operationDate: this.fb.control(null, [Validators.required]),
       timeConstraint: this.fb.control(null, [Validators.required]),
       level: this.fb.control(null, [Validators.required]),
-      repoNameFront: this.fb.control(null, [Validators.required]),
-      repoNameBack: this.fb.control(null, [Validators.required]),
-      gitUrlBack: this.fb.control(null, [Validators.required]),
-      gitUrlFront: this.fb.control(null, [Validators.required]),
+      repoName: this.fb.control(null, [Validators.required]),
+      gitUrl: this.fb.control(null, [Validators.required]),
     });
   }
   saveLivrable() {

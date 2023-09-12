@@ -71,49 +71,25 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-outline mb-4">
-                                            <label class="form-label" for="title">Repository Front</label>
-                                            <input type="text" id="repoNameFront" class="form-control form-control-lg"
-                                                formControlName="repoNameFront" />
-                                            <span class="text-danger" *ngIf="livrableForm.controls['repoNameFront'].touched
-                                && livrableForm.controls['repoNameFront'].errors
-                                && livrableForm.controls['repoNameFront'].errors!['required']">
-                                                Le champ Repository Front est obligatoire
+                                            <label class="form-label" for="title">Repository</label>
+                                            <input type="text" id="repoName" class="form-control form-control-lg"
+                                                formControlName="repoName" />
+                                            <span class="text-danger" *ngIf="livrableForm.controls['repoName'].touched
+                                && livrableForm.controls['repoName'].errors
+                                && livrableForm.controls['repoName'].errors!['required']">
+                                                Le champ Repository est obligatoire
                                             </span>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-outline mb-4">
-                                            <label class="form-label" for="title">Repository Back</label>
-                                            <input type="text" id="repoNameBack" class="form-control form-control-lg"
-                                                formControlName="repoNameBack" />
-                                            <span class="text-danger" *ngIf="livrableForm.controls['repoNameBack'].touched
-                                && livrableForm.controls['repoNameBack'].errors
-                                && livrableForm.controls['repoNameBack'].errors!['required']">
-                                                Le champ Repository Back est obligatoire
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-outline mb-4">
-                                            <label class="form-label" for="title">URL Git Front</label>
-                                            <input type="text" id="gitUrlFront" class="form-control form-control-lg"
-                                                formControlName="gitUrlFront" />
-                                            <span class="text-danger" *ngIf="livrableForm.controls['gitUrlFront'].touched
-                                && livrableForm.controls['gitUrlFront'].errors
-                                && livrableForm.controls['gitUrlFront'].errors!['required']">
-                                                Le champ URL Git Front est obligatoire
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-outline mb-4">
-                                            <label class="form-label" for="title">URL Git Back</label>
-                                            <input type="text" id="gitUrlBack" class="form-control form-control-lg"
-                                                formControlName="gitUrlBack" />
-                                            <span class="text-danger" *ngIf="livrableForm.controls['gitUrlBack'].touched
-                                && livrableForm.controls['gitUrlBack'].errors
-                                && livrableForm.controls['gitUrlBack'].errors!['required']">
-                                                Le champ URL Git Back est obligatoire
+                                            <label class="form-label" for="title">URL Git</label>
+                                            <input type="text" id="gitUrl" class="form-control form-control-lg"
+                                                formControlName="gitUrl" />
+                                            <span class="text-danger" *ngIf="livrableForm.controls['gitUrl'].touched
+                                && livrableForm.controls['gitUrl'].errors
+                                && livrableForm.controls['gitUrl'].errors!['required']">
+                                                Le champ URL Git est obligatoire
                                             </span>
                                         </div>
                                     </div>

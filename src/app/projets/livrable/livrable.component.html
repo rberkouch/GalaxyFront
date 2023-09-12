@@ -1,3 +1,54 @@
-<section style="background-color: #eee;">
-    <button class="btn btn-primary float-end me-5" (click)="ajouterLivrable()">Ajouter un livrable</button>
-</section>
+<div class="container mt-2">
+  <ng-container>
+    <div class="card">
+      <div class="card-header">
+        <div class="container row">
+          <div class="col">
+            <h4>Les livrables</h4>
+          </div>
+          <div class="col">
+            <button class="btn btn-success" (click)="ajouterLivrable()">Ajouter un livrable</button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div *ngIf="searchFormGroup">
+          <form [formGroup]="searchFormGroup" (ngSubmit)="handleSearchLivrables()">
+            <div class="input-group">
+              <label class="input-group-text">Recherche par nom de repository :</label>
+              <input type="text" formControlName="keyword" class="form-control">
+              <button class="btn btn-info">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+        <table class="table">
+          <tbody>
+            <tr *ngFor="let l of livrables | async">
+              <td>
+                <p *ngFor="let u of l.utilisateurs">{{u.username}}/</p>
+              </td>
+              <td><a href="{{l.gitUrl}}" target="_blank">{{l.repoName}}</a></td>
+              <td>
+                <button (click)="supprimerLivrable(l.id)" class="btn btn-danger">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #failureOrLading>
+    <ng-container *ngIf="errorMessage; else loading">
+      <div class="text-danger">
+        {{errorMessage}}
+      </div>
+    </ng-container>
+    <ng-template #loading>
+      Loading .....
+    </ng-template>
+  </ng-template>
+</div>
