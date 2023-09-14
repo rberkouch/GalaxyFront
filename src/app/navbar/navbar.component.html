@@ -48,8 +48,8 @@
             Les projets
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" routerLink="/admin/sujet">Sujet</a></li>
-            <li><a class="dropdown-item" routerLink="/admin/livrable">Livrable</a></li>
+            <li *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('FORMATEUR')"><a class="dropdown-item" routerLink="/admin/sujet">Sujet</a></li>
+            <li *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('FORMATEUR')"><a class="dropdown-item" routerLink="/admin/livrable">Livrable</a></li>
           </ul>
         </li>
       </ul>

@@ -47,7 +47,7 @@
           <label for="roles" class="form-label">Définition des rôles : </label>
 
           <select class="form-control" type="number" formControlName="roles" multiple>
-            <option *ngFor="let level of list_role" [ngValue]="level">{{level.role}}</option>
+            <option *ngFor="let r of appRoles" [ngValue]="r">{{r.role}}</option>
           </select>
         </div>
         <div class="mb-3">

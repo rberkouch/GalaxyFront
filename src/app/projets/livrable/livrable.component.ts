@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, catchError, throwError } from 'rxjs';
 import { Livrable } from 'src/app/model/livrable';
+import { AuthService } from 'src/app/services/auth.service';
 import { LivrableService } from 'src/app/services/livrable.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class LivrableComponent {
   searchFormGroup: FormGroup | undefined;
   constructor(
     private livrableService: LivrableService,
+    public authService: AuthService,
     private router: Router,
     private fb: FormBuilder
   ) {}

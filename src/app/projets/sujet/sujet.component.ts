@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Sujet } from 'src/app/model/sujet';
+import { AuthService } from 'src/app/services/auth.service';
 import { SujetService } from 'src/app/services/sujet.service';
 
 @Component({
@@ -10,7 +11,11 @@ import { SujetService } from 'src/app/services/sujet.service';
 })
 export class SujetComponent implements OnInit {
   sujets!: any[];
-  constructor(private sujetService: SujetService, private router: Router) {}
+  constructor(
+    private sujetService: SujetService,
+    public authService: AuthService,
+    private router: Router
+  ) {}
   ngOnInit(): void {
     this.getSujets();
   }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
+import { AppRoleService } from 'src/app/services/app-role.service';
 import { UserService } from 'src/app/services/user.service';
 
 export class Role {
@@ -19,9 +20,11 @@ export class Role {
 })
 export class AddUtlisateurComponent {
   newUserFormGroup!: FormGroup;
+  appRoles!: any[];
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
+    private appRoleService: AppRoleService,
     private router: Router
   ) {}
   ngOnInit(): void {
@@ -46,6 +49,7 @@ export class AddUtlisateurComponent {
       roles: this.fb.control(null, [Validators.required]),
       active: this.fb.control(true, [Validators.required]),
     });
+    this.findAllAppRoles();
   }
 
   handleSaveUser() {
@@ -54,7 +58,7 @@ export class AddUtlisateurComponent {
       next: (data: any) => {
         alert('User has been successfully saved!');
         //this.newCustomerFormGroup.reset();
-        this.router.navigateByUrl('/customers');
+        this.router.navigateByUrl('/admin/utilisateurs');
       },
       error: (err: any) => {
         console.log(err);
@@ -62,5 +66,10 @@ export class AddUtlisateurComponent {
     });
   }
 
-  list_role: Array<Role> = [{ role: 'ADMIN' }, { role: 'USER' }];
+  // list_role: Array<Role> = [{ role: 'ADMIN' }, { role: 'USER' }];
+  findAllAppRoles() {
+    this.appRoleService.getAppRoles().subscribe((data) => {
+      this.appRoles = data;
+    });
+  }
 }

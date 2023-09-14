@@ -5,6 +5,7 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import { Router } from '@angular/router';
 import { SujetService } from 'src/app/services/sujet.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -15,10 +16,13 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class AfficherSujetComponent implements OnInit {
   sujet!: Sujet;
   alignement = 'left';
-  constructor(private sujetService: SujetService, private router: Router) {}
+  constructor(
+    private sujetService: SujetService,
+    public authService: AuthService,
+    private router: Router
+  ) {}
   ngOnInit(): void {
     let sujetId = localStorage.getItem('editSujetId');
-    console.log('sujet Id:::::' + sujetId);
     if (!sujetId) {
       alert('Invalid Action!!!');
       this.router.navigate(['/admin/sujet']);
