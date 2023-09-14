@@ -1,5 +1,5 @@
 <section class="h-100 bg-dark">
-    <form [formGroup]="livrableForm" (ngSubmit)="saveLivrable()">
+    <div [formGroup]="livrableForm">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col">
@@ -93,10 +93,24 @@
                                             </span>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="form-outline mb-4">
+                                            <div formArrayName="utilisateurs">
+                                                <div *ngFor="let user of utilisateurs.controls; let i=index">
+                                                    <div [formGroupName]="i">
+                                                        <input id="userId" class="form-control form-control-lg"
+                                                            type="hidden" [(ngModel)]="utilisateur.userId"
+                                                            ngModelOptions="{standalone: true}"
+                                                            formControlName="userId" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <button type="reset" class="btn btn-danger btn-lg ms-2"
                                         (click)="annulerAjout()">Annuler</button>
-                                    <button [disabled]="!livrableForm.valid"
-                                        class="btn btn-success btn-lg ms-2">Ajouter</button>
+                                    <button [disabled]="!livrableForm.valid" class="btn btn-success btn-lg ms-2"
+                                        (click)="saveLivrable()">Ajouter</button>
 
                                 </div>
                             </div>
@@ -106,6 +120,6 @@
                 </div>
             </div>
         </div>
-    </form>
+    </div>
 
 </section>

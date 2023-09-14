@@ -7,7 +7,8 @@
             <h4>Les livrables</h4>
           </div>
           <div class="col">
-            <button class="btn btn-success" (click)="ajouterLivrable()">Ajouter un livrable</button>
+            <button class="btn btn-success" (click)="ajouterLivrable()"><i class="bi bi-plus "></i>Ajouter un
+              livrable</button>
           </div>
         </div>
       </div>
@@ -24,12 +25,16 @@
           </form>
         </div>
         <table class="table">
+          <thead>
+            <th>Les repositories</th>
+            <th>Action</th>
+          </thead>
           <tbody>
             <tr *ngFor="let l of livrables | async">
               <td>
-                <p *ngFor="let u of l.utilisateurs">{{u.username}}/</p>
+                <p *ngFor="let u of l.utilisateurs"><a href="{{l.gitUrl}}"
+                    target="_blank">{{u.username}}/{{l.repoName}}</a></p>
               </td>
-              <td><a href="{{l.gitUrl}}" target="_blank">{{l.repoName}}</a></td>
               <td>
                 <button (click)="supprimerLivrable(l.id)" class="btn btn-danger">
                   <i class="bi bi-trash"></i>

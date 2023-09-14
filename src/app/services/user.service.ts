@@ -9,9 +9,7 @@ import { User } from '../model/user';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  get(id: string) {
-    throw new Error('Method not implemented.');
-  }
+ 
 
   private host = environment.backendHost;
   private _userCourant: any;
@@ -19,7 +17,9 @@ export class UserService {
   public get userCourant() {
     return this._userCourant;
   }
-
+  get(id: string) {
+    return this.http.get<any>(`${this.host}/find/`+id);
+  }
   public set userCourant(value: any) {
     this._userCourant = value;
   }
