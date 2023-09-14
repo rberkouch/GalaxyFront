@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Level } from 'src/app/enum/level.enum';
+import { AuthService } from 'src/app/services/auth.service';
 import { SujetService } from 'src/app/services/sujet.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class AddSujetComponent {
   constructor(
     private sujetService: SujetService,
     private fb: FormBuilder,
+    public authService: AuthService,
     private router: Router
   ) {}
   levelType = Object.values(Level);

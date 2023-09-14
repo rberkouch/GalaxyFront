@@ -7,7 +7,7 @@
             <h4>Les livrables</h4>
           </div>
           <div class="col">
-            <button class="btn btn-success" (click)="ajouterLivrable()"><i class="bi bi-plus "></i>Ajouter un
+            <button class="btn btn-success" *ngIf="authService.roles.includes('USER')" (click)="ajouterLivrable()"><i class="bi bi-plus "></i>Ajouter un
               livrable</button>
           </div>
         </div>
@@ -36,7 +36,7 @@
                     target="_blank">{{u.username}}/{{l.repoName}}</a></p>
               </td>
               <td>
-                <button (click)="supprimerLivrable(l.id)" class="btn btn-danger">
+                <button *ngIf="authService.roles.includes('USER') || authService.roles.includes('FORMATEUR')" (click)="supprimerLivrable(l.id)" class="btn btn-danger">
                   <i class="bi bi-trash"></i>
                 </button>
               </td>
