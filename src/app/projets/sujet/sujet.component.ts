@@ -20,6 +20,8 @@ export class SujetComponent implements OnInit {
     });
   }
   supprimerSujet(id: number) {
+    let conf = confirm('Êtes-vous sûr de vouloir supprimer ce sujet ?');
+    if (!conf) return;
     this.sujetService.deleteSujet(id).subscribe(() => {
       this.getSujets();
     });
