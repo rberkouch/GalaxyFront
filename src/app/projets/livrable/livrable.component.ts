@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, catchError, throwError } from 'rxjs';
@@ -11,8 +11,8 @@ import { LivrableService } from 'src/app/services/livrable.service';
   templateUrl: './livrable.component.html',
   styleUrls: ['./livrable.component.css'],
 })
-export class LivrableComponent {
-  livrables!: Observable<Array<Livrable>>;
+export class LivrableComponent implements OnInit {
+  livrables!:Observable<Array<Livrable>>;
   errorMessage!: string;
   searchFormGroup: FormGroup | undefined;
   constructor(
@@ -25,7 +25,17 @@ export class LivrableComponent {
     this.searchFormGroup = this.fb.group({
       keyword: this.fb.control(''),
     });
-    this.handleSearchLivrables();
+    if (
+      this.authService.roles == 'ADMIN USER' ||
+      this.authService.roles == 'FORMATEUR' ||
+      this.authService.roles == 'ADMIN FORMATEUR'
+    ) {
+      console.log('roles=' + this.authService.roles);
+      this.handleSearchLivrables();
+    } else {
+      console.log('roles=' + this.authService.roles);
+      this.findLivrablesByUsername();
+    }
   }
   supprimerLivrable(id: number) {
     let conf = confirm('Êtes-vous sûr de vouloir supprimer ce livrable ?');
@@ -45,5 +55,10 @@ export class LivrableComponent {
         return throwError(err);
       })
     );
+  }
+  findLivrablesByUsername() {
+    this.livrableService.getLivrablesByUsername(this.authService.username).subscribe((data) => {
+      this.livrables = data;
+    });
   }
 }

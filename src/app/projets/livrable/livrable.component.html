@@ -7,12 +7,13 @@
             <h4>Les livrables</h4>
           </div>
           <div class="col">
-            <button class="btn btn-success" *ngIf="authService.roles.includes('USER')" (click)="ajouterLivrable()"><i class="bi bi-plus "></i>Ajouter un
+            <button class="btn btn-success" *ngIf="authService.roles.includes('TEST')" (click)="ajouterLivrable()"><i class="bi bi-plus "></i>Ajouter un
               livrable</button>
           </div>
         </div>
       </div>
       <div class="card-body">
+      <div *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('USER') || authService.roles.includes('FORMATEUR')"> 
         <div *ngIf="searchFormGroup">
           <form [formGroup]="searchFormGroup" (ngSubmit)="handleSearchLivrables()">
             <div class="input-group">
@@ -24,6 +25,7 @@
             </div>
           </form>
         </div>
+      </div>
         <table class="table">
           <thead>
             <th>Les repositories</th>

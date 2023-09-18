@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/model/user';
-import { Role } from '../add-utlisateur/add-utlisateur.component';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { AppRoleService } from 'src/app/services/app-role.service';
 
 @Component({
   selector: 'app-edit-utilisateur',
@@ -12,12 +12,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EditUtilisateurComponent implements OnInit {
   newUserFormGroup: any = null;
+  appRoles!: any[];
   object1: any = new User();
   router: any;
 
   constructor(
     public fb: FormBuilder,
     public userService: UserService,
+    private appRoleService: AppRoleService,
     public route: ActivatedRoute
   ) {}
 
@@ -82,6 +84,7 @@ export class EditUtilisateurComponent implements OnInit {
           console.log(this.newUserFormGroup.value);
         },
       });
+      this.findAllAppRoles();
   }
   handleSaveUser() {
     let user: User = this.newUserFormGroup.value;
@@ -97,5 +100,10 @@ export class EditUtilisateurComponent implements OnInit {
     });
   }
 
-  list_role: Array<Role> = [{ role: 'ADMIN' }, { role: 'USER' }];
+  // list_role: Array<Role> = [{ role: 'ADMIN' }, { role: 'USER' }];
+  findAllAppRoles() {
+    this.appRoleService.getAppRoles().subscribe((data) => {
+      this.appRoles = data;
+    });
+  }
 }

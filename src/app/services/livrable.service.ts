@@ -13,7 +13,11 @@ export class LivrableService {
   public getLivrables(): Observable<any> {
     return this.http.get(environment.backendHost + '/livrables');
   }
-
+  public getLivrablesByUsername(username: string): Observable<any> {
+    return this.http.get(
+      environment.backendHost + '/livrables/user/' + username
+    );
+  }
   public getLivrableById(id: number) {
     return this.http.get<any>(environment.backendHost + '/livrables/' + id);
   }

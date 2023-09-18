@@ -23,6 +23,8 @@ import { LivrableComponent } from './projets/livrable/livrable.component';
 import { AfficherSujetComponent } from './projets/sujet/afficher-sujet/afficher-sujet.component';
 import { AddSujetComponent } from './projets/sujet/add-sujet/add-sujet.component';
 import { AddLivrableComponent } from './projets/livrable/add-livrable/add-livrable.component';
+import { RoleComponent } from './gestion/role/role.component';
+import { AddRoleComponent } from './gestion/role/add-role/add-role.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -37,6 +39,8 @@ const routes: Routes = [
       { path: 'user', component: UserComponent },
       { path: 'adduser', component: AddUtlisateurComponent },
       { path: 'edituser/:username', component: EditUtilisateurComponent },
+      { path: 'role', component: RoleComponent },
+      { path: 'addrole', component: AddRoleComponent },
       { path: 'formations', component: FormationsComponent },
       { path: 'formation', component: FormationComponent },
       { path: 'formation-details/:id', component: FormationDetailsComponent },
