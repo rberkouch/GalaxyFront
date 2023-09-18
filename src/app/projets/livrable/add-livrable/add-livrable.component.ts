@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -18,7 +18,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './add-livrable.component.html',
   styleUrls: ['./add-livrable.component.css'],
 })
-export class AddLivrableComponent {
+export class AddLivrableComponent implements OnInit {
   levelType = Object.values(Level);
   livrableForm!: FormGroup;
   utilisateurForm!: FormGroup;

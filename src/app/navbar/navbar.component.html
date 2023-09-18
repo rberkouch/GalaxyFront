@@ -36,6 +36,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" routerLink="/admin/utilisateurs">Utilisateurs</a></li>
+            <li><a class="dropdown-item" routerLink="/admin/role">Roles</a></li>
             <li><a class="dropdown-item" routerLink="/admin/formations">Formations</a></li>
             <li *ngIf="authService.roles.includes('ADMIN')"><a class="dropdown-item"
                 routerLink="/admin/modules">Modules</a></li>
@@ -48,8 +49,10 @@
             Les projets
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('FORMATEUR')"><a class="dropdown-item" routerLink="/admin/sujet">Sujet</a></li>
-            <li *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('FORMATEUR')"><a class="dropdown-item" routerLink="/admin/livrable">Livrable</a></li>
+            <li *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('FORMATEUR')"><a
+                class="dropdown-item" routerLink="/admin/sujet">Sujet</a></li>
+            <li *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('TEST')"><a
+                class="dropdown-item" routerLink="/admin/livrable">Livrable</a></li>
           </ul>
         </li>
       </ul>

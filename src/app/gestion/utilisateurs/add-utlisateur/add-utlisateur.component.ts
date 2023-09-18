@@ -5,14 +5,6 @@ import { User } from 'src/app/model/user';
 import { AppRoleService } from 'src/app/services/app-role.service';
 import { UserService } from 'src/app/services/user.service';
 
-export class Role {
-  public role: string;
-
-  constructor() {
-    this.role = '';
-  }
-}
-
 @Component({
   selector: 'app-add-utlisateur',
   templateUrl: './add-utlisateur.component.html',

@@ -33,6 +33,8 @@ import { LivrableComponent } from './projets/livrable/livrable.component';
 import { AfficherSujetComponent } from './projets/sujet/afficher-sujet/afficher-sujet.component';
 import { AddSujetComponent } from './projets/sujet/add-sujet/add-sujet.component';
 import { AddLivrableComponent } from './projets/livrable/add-livrable/add-livrable.component';
+import { RoleComponent } from './gestion/role/role.component';
+import { AddRoleComponent } from './gestion/role/add-role/add-role.component';
 
 
 @NgModule({
@@ -62,6 +64,8 @@ import { AddLivrableComponent } from './projets/livrable/add-livrable/add-livrab
     AfficherSujetComponent,
     AddSujetComponent,
     AddLivrableComponent,
+    RoleComponent,
+    AddRoleComponent,
   ],
   imports: [
     BrowserModule,

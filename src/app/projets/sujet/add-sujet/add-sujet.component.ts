@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Level } from 'src/app/enum/level.enum';
@@ -10,7 +10,7 @@ import { SujetService } from 'src/app/services/sujet.service';
   templateUrl: './add-sujet.component.html',
   styleUrls: ['./add-sujet.component.css'],
 })
-export class AddSujetComponent {
+export class AddSujetComponent implements OnInit {
   constructor(
     private sujetService: SujetService,
     private fb: FormBuilder,
