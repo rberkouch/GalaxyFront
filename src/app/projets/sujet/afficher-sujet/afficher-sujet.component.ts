@@ -14,7 +14,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./afficher-sujet.component.css'],
 })
 export class AfficherSujetComponent implements OnInit {
-  sujet!: Sujet;
+  sujet:Sujet=new Sujet();
   alignement = 'left';
   constructor(
     private sujetService: SujetService,
@@ -23,6 +23,7 @@ export class AfficherSujetComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     let sujetId = localStorage.getItem('editSujetId');
+    console.log("sujetId:"+sujetId);
     if (!sujetId) {
       alert('Invalid Action!!!');
       this.router.navigate(['/admin/sujet']);

@@ -17,12 +17,26 @@ export class SujetComponent implements OnInit {
     private router: Router
   ) {}
   ngOnInit(): void {
-    this.getSujets();
+    if (
+      this.authService.roles == 'ADMIN USER' ||
+      this.authService.roles == 'FORMATEUR'
+    ) {
+      this.getSujets();
+    } else {
+      this.getSujetsByUsername();
+    }
   }
   getSujets() {
     this.sujetService.getSujets().subscribe((data) => {
       this.sujets = data;
     });
+  }
+  getSujetsByUsername() {
+    this.sujetService
+      .getSujetsByUsername(this.authService.username)
+      .subscribe((data) => {
+        this.sujets = data;
+      });
   }
   supprimerSujet(id: number) {
     let conf = confirm('Êtes-vous sûr de vouloir supprimer ce sujet ?');
@@ -38,5 +52,10 @@ export class SujetComponent implements OnInit {
   }
   ajouterSujet() {
     this.router.navigateByUrl('/admin/addsujet');
+  }
+  affecterSujet(sujet: Sujet) {
+    localStorage.removeItem('editSujetId');
+    localStorage.setItem('editSujetId', sujet.id.toString());
+    this.router.navigateByUrl('/admin/affectersujet');
   }
 }

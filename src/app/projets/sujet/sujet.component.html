@@ -1,5 +1,6 @@
 <section style="background-color: #eee;">
-  <button class="btn btn-primary float-end me-5" *ngIf="authService.roles.includes('FORMATEUR')" (click)="ajouterSujet()"><i class="bi bi-plus "></i>Ajouter un
+  <button class="btn btn-primary float-end me-5" *ngIf="authService.roles.includes('FORMATEUR')"
+    (click)="ajouterSujet()"><i class="bi bi-plus "></i>Ajouter un
     sujet</button>
   <div id="etus" class="text-center container py-5">
     <h1><strong>Les sujets</strong></h1>
@@ -8,23 +9,24 @@
     <div class="row">
       <div class="col-md-3 my-3" *ngFor="let s of sujets">
         <div class="card">
-          <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-            <div class="mask">
-              <div class="d-flex justify-content-start align-items-end h-100">
-                <h5><span class="badge bg-success ms-3">Niveau : {{s.level}}<br>Durée: {{s.timeConstraint}}
-                    jour(s)</span></h5>
-              </div>
-            </div>
-            <div class="hover-overlay">
-              <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-            </div>
-          </div>
+          <h5 class="card-header">
+           Niveau : {{s.level}}<br>Durée: {{s.timeConstraint}}
+                jour(s)
+          </h5>
           <div class="card-body">
             <h2 class="card-title mb-3">{{s.title}}</h2>
-            <h6 class="mb-3"></h6>
-
-            <button type="button" class="btn btn-warning me-1" *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('FORMATEUR')" (click)="afficherSujet(s)">Consulter</button>
-            <button type="button" class="btn btn-danger" *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('FORMATEUR')" (click)="supprimerSujet(s.id)">Supprimer</button>
+          </div>
+          <div class="card-footer">
+            <div class="btn-group btn-group-sm" role="group">
+              <button type="button" class="btn btn-warning me-1"
+                *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('FORMATEUR')"
+                (click)="afficherSujet(s)">Consulter</button>
+              <button type="button" class="btn btn-primary me-1" *ngIf="authService.roles.includes('FORMATEUR')"
+                (click)="affecterSujet(s)">Affecter</button>
+              <button type="button" class="btn btn-danger"
+                *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('FORMATEUR')"
+                (click)="supprimerSujet(s.id)">Supprimer</button>
+            </div>
           </div>
         </div>
       </div>

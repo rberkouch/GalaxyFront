@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./documents.component.css'],
 })
 export class DocumentsComponent implements OnInit {
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+  constructor() {}
+  ngOnInit(): void {}
 }
