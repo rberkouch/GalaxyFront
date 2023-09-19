@@ -41,15 +41,25 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <button type="button" class="btn btn-secondary btn-lg btn-block" (click)="generatePDF(sujet)"><span
-            class="bi bi-file-pdf"></span>Ouvrir</button>
-        <br><br>
-        <button type="button" class="btn btn-secondary btn-lg btn-block" (click)="generatePDF(sujet,'download')"><span
-            class="bi bi-file-pdf"></span>Télécharger</button>
-        <br><br>
-        <button type="button" class="btn btn-secondary btn-lg btn-block" (click)="generatePDF(sujet,'print')"><span
-            class="bi bi-file-pdf"></span>Imprimer</button>
+      <div class="btn-group btn-group-sm col-md-4" role="group">
+        <div class="row">
+          <div class="col-sm">
+            <button type="button" class="btn btn-secondary me-1" (click)="generatePDF(sujet)"><span
+                class="bi bi-file-pdf"></span>Ouvrir</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <button type="button" class="btn btn-secondary me-1"
+              (click)="generatePDF(sujet,'download')"><span class="bi bi-file-pdf"></span>Télécharger</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <button type="button" class="btn btn-secondary" (click)="generatePDF(sujet,'print')"><span
+                class="bi bi-file-pdf"></span>Imprimer</button>
+          </div>
+        </div>
       </div>
     </div>
 

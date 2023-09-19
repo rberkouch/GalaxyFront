@@ -31,8 +31,21 @@
             <th>Les repositories</th>
             <th>Action</th>
           </thead>
-          <tbody>
+          <tbody *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('FORMATEUR')">
             <tr *ngFor="let l of livrables | async">
+              <td>
+                <p *ngFor="let u of l.utilisateurs"><a href="{{l.gitUrl}}"
+                    target="_blank">{{u.username}}/{{l.repoName}}</a></p>
+              </td>
+              <td>
+                <button *ngIf="authService.roles.includes('USER') || authService.roles.includes('FORMATEUR')" (click)="supprimerLivrable(l.id)" class="btn btn-danger">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="authService.roles.includes('TEST')">
+            <tr *ngFor="let l of livrables2">
               <td>
                 <p *ngFor="let u of l.utilisateurs"><a href="{{l.gitUrl}}"
                     target="_blank">{{u.username}}/{{l.repoName}}</a></p>

@@ -25,6 +25,7 @@ import { AddSujetComponent } from './projets/sujet/add-sujet/add-sujet.component
 import { AddLivrableComponent } from './projets/livrable/add-livrable/add-livrable.component';
 import { RoleComponent } from './gestion/role/role.component';
 import { AddRoleComponent } from './gestion/role/add-role/add-role.component';
+import { AffecterSujetComponent } from './projets/sujet/affecter-sujet/affecter-sujet.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -53,6 +54,7 @@ const routes: Routes = [
       { path: 'sujet', component: SujetComponent },
       { path: 'affichersujet/:id', component: AfficherSujetComponent },
       { path: 'addsujet', component: AddSujetComponent },
+      { path: 'affectersujet', component: AffecterSujetComponent },
       { path: 'livrable', component: LivrableComponent },
       { path: 'addlivrable', component: AddLivrableComponent },
     ],

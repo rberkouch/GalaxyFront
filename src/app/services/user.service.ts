@@ -78,7 +78,11 @@ export class UserService {
       environment.backendHost + '/user/search?keyword=' + keyword
     );
   }
-
+  public findUsersIfRoleIsTest(keyword: string): Observable<Array<User>> {
+    return this.http.get<Array<User>>(
+      environment.backendHost + '/user/ifroletest/search?keyword=' + keyword
+    );
+  }
   
   public deleteUser(id: string) {
     return this.http.delete(environment.backendHost + '/user/' + id);

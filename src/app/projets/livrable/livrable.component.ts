@@ -13,6 +13,7 @@ import { LivrableService } from 'src/app/services/livrable.service';
 })
 export class LivrableComponent implements OnInit {
   livrables!:Observable<Array<Livrable>>;
+  livrables2!:any;
   errorMessage!: string;
   searchFormGroup: FormGroup | undefined;
   constructor(
@@ -58,7 +59,7 @@ export class LivrableComponent implements OnInit {
   }
   findLivrablesByUsername() {
     this.livrableService.getLivrablesByUsername(this.authService.username).subscribe((data) => {
-      this.livrables = data;
+      this.livrables2 = data;
     });
   }
 }

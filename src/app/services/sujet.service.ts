@@ -13,7 +13,11 @@ export class SujetService {
   public getSujets(): Observable<any> {
     return this.http.get(environment.backendHost + '/sujets');
   }
-
+  public getSujetsByUsername(username: string): Observable<any> {
+    return this.http.get(
+      environment.backendHost + '/sujets/user/' + username
+    );
+  }
   public getSujetById(id: number) {
     return this.http.get<any>(environment.backendHost + '/sujets/' + id);
   }
