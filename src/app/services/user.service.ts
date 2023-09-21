@@ -1,27 +1,22 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpClient,
-  HttpEvent,
-} from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { User } from '../model/user';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
- 
-
   private host = environment.backendHost;
   private _userCourant: any;
 
   public get userCourant() {
     return this._userCourant;
   }
-  get(id: string) {
-    return this.http.get<any>(`${this.host}/find/`+id);
-  }
   public set userCourant(value: any) {
     this._userCourant = value;
+  }
+  get(id: string) {
+    return this.http.get<any>(`${this.host}/find/` + id);
   }
 
   constructor(private http: HttpClient) {}
@@ -78,12 +73,14 @@ export class UserService {
       environment.backendHost + '/user/search?keyword=' + keyword
     );
   }
-  public findUsersIfRoleIsTest(keyword: string): Observable<Array<User>> {
+  public findUsersIfRoleIsApprenant(keyword: string): Observable<Array<User>> {
     return this.http.get<Array<User>>(
-      environment.backendHost + '/user/ifroletest/search?keyword=' + keyword
+      environment.backendHost +
+        '/user/ifroleapprenant/search?keyword=' +
+        keyword
     );
   }
-  
+
   public deleteUser(id: string) {
     return this.http.delete(environment.backendHost + '/user/' + id);
   }

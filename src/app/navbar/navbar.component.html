@@ -50,10 +50,12 @@
             Les projets
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('FORMATEUR') || authService.roles.includes('TEST')"><a
-                class="dropdown-item" routerLink="/admin/sujet">Sujet</a></li>
-            <li *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('FORMATEUR') || authService.roles.includes('TEST')"><a
-                class="dropdown-item" routerLink="/admin/livrable">Livrable</a></li>
+            <li
+              *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('FORMATEUR') || authService.roles.includes('APPRENANT')">
+              <a class="dropdown-item" routerLink="/admin/sujet">Sujet</a></li>
+            <li
+              *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('FORMATEUR') || authService.roles.includes('APPRENANT')">
+              <a class="dropdown-item" routerLink="/admin/livrable">Livrable</a></li>
           </ul>
         </li>
       </ul>

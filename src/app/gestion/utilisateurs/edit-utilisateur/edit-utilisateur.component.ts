@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppRoleService } from 'src/app/services/app-role.service';
 
 @Component({
@@ -14,13 +14,13 @@ export class EditUtilisateurComponent implements OnInit {
   newUserFormGroup: any = null;
   appRoles!: any[];
   object1: any = new User();
-  router: any;
 
   constructor(
-    public fb: FormBuilder,
-    public userService: UserService,
+    private fb: FormBuilder,
+    private userService: UserService,
     private appRoleService: AppRoleService,
-    public route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router:Router,
   ) {}
 
   ngOnInit(): void {
@@ -92,7 +92,7 @@ export class EditUtilisateurComponent implements OnInit {
       next: (data: any) => {
         alert('User has been successfully saved!');
         //this.newCustomerFormGroup.reset();
-        this.router.navigateByUrl('/customers');
+        this.router.navigateByUrl('/admin/utilisateurs');
       },
       error: (err: any) => {
         console.log(err);
