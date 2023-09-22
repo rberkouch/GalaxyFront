@@ -1,19 +1,20 @@
 <div class="container mt-2">
-  <ng-container>
-    <div class="card">
-      <div class="card-header">
-        <div class="container row">
-          <div class="col">
-            <h4>Les livrables</h4>
-          </div>
-          <div class="col">
-            <button class="btn btn-success" *ngIf="authService.roles.includes('TEST')" (click)="ajouterLivrable()"><i class="bi bi-plus "></i>Ajouter un
-              livrable</button>
-          </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="container row">
+        <div class="col">
+          <h4>Les livrables</h4>
+        </div>
+        <div class="col">
+          <button class="btn btn-success" *ngIf="authService.roles.includes('APPRENANT')" (click)="ajouterLivrable()"><i
+              class="bi bi-plus "></i>Ajouter un
+            livrable</button>
         </div>
       </div>
-      <div class="card-body">
-      <div *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('USER') || authService.roles.includes('FORMATEUR')"> 
+    </div>
+    <div class="card-body">
+      <div
+        *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('USER') || authService.roles.includes('FORMATEUR')">
         <div *ngIf="searchFormGroup">
           <form [formGroup]="searchFormGroup" (ngSubmit)="handleSearchLivrables()">
             <div class="input-group">
@@ -26,49 +27,40 @@
           </form>
         </div>
       </div>
-        <table class="table">
-          <thead>
-            <th>Les repositories</th>
-            <th>Action</th>
-          </thead>
-          <tbody *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('FORMATEUR')">
-            <tr *ngFor="let l of livrables | async">
-              <td>
-                <p *ngFor="let u of l.utilisateurs"><a href="{{l.gitUrl}}"
-                    target="_blank">{{u.username}}/{{l.repoName}}</a></p>
-              </td>
-              <td>
-                <button *ngIf="authService.roles.includes('USER') || authService.roles.includes('FORMATEUR')" (click)="supprimerLivrable(l.id)" class="btn btn-danger">
-                  <i class="bi bi-trash"></i>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-          <tbody *ngIf="authService.roles.includes('TEST')">
-            <tr *ngFor="let l of livrables2">
-              <td>
-                <p *ngFor="let u of l.utilisateurs"><a href="{{l.gitUrl}}"
-                    target="_blank">{{u.username}}/{{l.repoName}}</a></p>
-              </td>
-              <td>
-                <button *ngIf="authService.roles.includes('USER') || authService.roles.includes('FORMATEUR')" (click)="supprimerLivrable(l.id)" class="btn btn-danger">
-                  <i class="bi bi-trash"></i>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <table class="table">
+        <thead>
+          <th>Les repositories</th>
+          <th *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('FORMATEUR')">Action</th>
+        </thead>
+        <tbody *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('FORMATEUR')">
+          <tr *ngFor="let l of livrables | async">
+            <td>
+              <p *ngFor="let u of l.utilisateurs"><a href="{{l.gitUrl}}"
+                  target="_blank">{{u.username}}/{{l.repoName}}</a></p>
+            </td>
+            <td>
+              <button *ngIf="authService.roles.includes('USER') || authService.roles.includes('FORMATEUR')"
+                (click)="supprimerLivrable(l.id)" class="btn btn-danger">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="authService.roles.includes('APPRENANT')">
+          <tr *ngFor="let l of livrables2">
+            <td>
+              <p *ngFor="let u of l.utilisateurs"><a href="{{l.gitUrl}}"
+                  target="_blank">{{u.username}}/{{l.repoName}}</a></p>
+            </td>
+            <td>
+              <button *ngIf="authService.roles.includes('USER') || authService.roles.includes('FORMATEUR')"
+                (click)="supprimerLivrable(l.id)" class="btn btn-danger">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  </ng-container>
-  <ng-template #failureOrLading>
-    <ng-container *ngIf="errorMessage; else loading">
-      <div class="text-danger">
-        {{errorMessage}}
-      </div>
-    </ng-container>
-    <ng-template #loading>
-      Loading .....
-    </ng-template>
-  </ng-template>
+  </div>
 </div>

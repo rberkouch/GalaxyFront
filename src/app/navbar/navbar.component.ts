@@ -9,11 +9,11 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  selectedUser: any;
+  selectedUser: any = {};
   constructor(
     public authService: AuthService,
-    private router: Router,
-    public userService: UserService
+    public userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {

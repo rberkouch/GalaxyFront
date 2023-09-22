@@ -9,7 +9,7 @@
         </div>
         <div class="card-body">
             <div *ngIf="searchFormGroup">
-                <form [formGroup]="searchFormGroup" (ngSubmit)="findUsersIfRoleIsTest()">
+                <form [formGroup]="searchFormGroup" (ngSubmit)="findUsersIfRoleIsApprenant()">
                     <div class="input-group">
                         <label class="input-group-text">Recherche par nom :</label>
                         <input type="text" formControlName="keyword" class="form-control">
@@ -34,6 +34,10 @@
                         </td>
                         <td>{{c.firstName}}</td>
                         <td>{{c.lastName}}</td>
+                        <td>
+                            <div class="form-check form-switch"><input class="form-check-input" type="checkbox"
+                                    id="flexSwitchCheckDefault" (change)="affectOrNoSujetToUser(c)" #checkBoxId></div>
+                        </td>
                     </tr>
                 </tbody>
             </table>

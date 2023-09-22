@@ -10,22 +10,24 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./formation.component.css'],
 })
 export class FormationComponent implements OnInit {
-  formations: any;
+  formations!: any;
   constructor(
     private formationService: FormationService,
-    private router: Router,
     public userService: UserService,
-    public authService: AuthService
+    public authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.getFormations();
+  }
+  getFormations() {
     this.formationService.getFormations().subscribe({
       next: (data) => {
         this.formations = data;
       },
     });
   }
-
   formationDetails(id: any) {
     this.formationService.formationId = id;
     this.router.navigateByUrl('admin/formation-details');

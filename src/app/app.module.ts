@@ -37,7 +37,6 @@ import { RoleComponent } from './gestion/role/role.component';
 import { AddRoleComponent } from './gestion/role/add-role/add-role.component';
 import { AffecterSujetComponent } from './projets/sujet/affecter-sujet/affecter-sujet.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
