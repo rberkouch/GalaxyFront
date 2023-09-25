@@ -80,8 +80,6 @@ export class EditUtilisateurComponent implements OnInit {
             roles: this.fb.control(this.object1.roles, [Validators.required]),
             active: this.fb.control(this.object1.active, [Validators.required]),
           });
-
-          console.log(this.newUserFormGroup.value);
         },
       });
       this.findAllAppRoles();

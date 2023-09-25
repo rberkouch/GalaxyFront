@@ -26,10 +26,8 @@ export class LoginComponent implements OnInit {
   handleLogin() {
     let username = this.formLogin.value.username;
     let pwd = this.formLogin.value.password;
-    console.log(this.formLogin.value);
     this.authSerivce.login(username, pwd).subscribe({
       next: (data) => {
-        console.log(data);
         this.authSerivce.loadProfile(data);
         this.router.navigateByUrl('/admin/formation');
       },

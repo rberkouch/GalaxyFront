@@ -24,7 +24,6 @@ export class UserComponent implements OnInit, OnDestroy {
         next: (data) => {
           this.selectedUser = data;
           this.userService.userCourant = data;
-          console.log(this.selectedUser);
         },
       })
     );

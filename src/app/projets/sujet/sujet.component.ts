@@ -38,22 +38,22 @@ export class SujetComponent implements OnInit {
         this.sujets = data;
       });
   }
-  supprimerSujet(id: number) {
+  deleteSujet(id: number) {
     let conf = confirm('Êtes-vous sûr de vouloir supprimer ce sujet ?');
     if (!conf) return;
     this.sujetService.deleteSujet(id).subscribe(() => {
       this.getSujets();
     });
   }
-  afficherSujet(sujet: Sujet) {
+  gotToPageDisplaySujet(sujet: Sujet) {
     localStorage.removeItem('editSujetId');
     localStorage.setItem('editSujetId', sujet.id.toString());
     this.router.navigateByUrl('/admin/affichersujet/' + sujet.id);
   }
-  ajouterSujet() {
+  goToPageAddSujet() {
     this.router.navigateByUrl('/admin/addsujet');
   }
-  affecterSujet(sujet: Sujet) {
+  goToPageAffectSujet(sujet: Sujet) {
     localStorage.removeItem('editSujetId');
     localStorage.setItem('editSujetId', sujet.id.toString());
     this.router.navigateByUrl('/admin/affectersujet');

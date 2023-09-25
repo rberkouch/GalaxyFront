@@ -4,7 +4,6 @@ import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import { Router } from '@angular/router';
 import { SujetService } from 'src/app/services/sujet.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
@@ -14,7 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./afficher-sujet.component.css'],
 })
 export class AfficherSujetComponent implements OnInit {
-  sujet:Sujet=new Sujet();
+  sujet: Sujet = new Sujet();
   alignement = 'left';
   constructor(
     private sujetService: SujetService,
@@ -23,7 +22,6 @@ export class AfficherSujetComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     let sujetId = localStorage.getItem('editSujetId');
-    console.log("sujetId:"+sujetId);
     if (!sujetId) {
       alert('Invalid Action!!!');
       this.router.navigate(['/admin/sujet']);
@@ -31,7 +29,6 @@ export class AfficherSujetComponent implements OnInit {
     }
     this.sujetService.getSujetById(+sujetId).subscribe((data) => {
       this.sujet = data;
-      console.log('data=' + data);
     });
   }
   generatePDF(sujet: Sujet, action = 'open') {
@@ -114,7 +111,7 @@ export class AfficherSujetComponent implements OnInit {
       pdfMake.createPdf(docDefinition as any).open();
     }
   }
-  afficherAllSujets() {
+  goToPageDisplayAllSujets() {
     this.router.navigateByUrl('/admin/sujet');
   }
 }

@@ -1,11 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Level } from 'src/app/enum/level.enum';
 import { User } from 'src/app/model/user';
@@ -23,6 +17,7 @@ export class AddLivrableComponent implements OnInit {
   livrableForm!: FormGroup;
   utilisateurForm!: FormGroup;
   utilisateur: User = new User();
+
   constructor(
     private livrableService: LivrableService,
     public authService: AuthService,
@@ -43,26 +38,25 @@ export class AddLivrableComponent implements OnInit {
     });
     this.userService.get(this.authService.username).subscribe((data) => {
       this.utilisateur = data;
+      this.utilisateurs.push(
+        this.fb.group({
+          userId: [this.utilisateur.userId],
+        })
+      );
     });
-    this.addSUtilisateurs();
   }
+
   get utilisateurs(): FormArray {
     return this.livrableForm.get('utilisateurs') as FormArray;
   }
-  newUtilisateur(): FormGroup {
-    return this.fb.group({
-      userId: this.fb.control(null, [Validators.required]),
-    });
-  }
-  addSUtilisateurs() {
-    this.utilisateurs.push(this.newUtilisateur());
-  }
+
   saveLivrable() {
     this.livrableService
       .addLivrable(this.livrableForm.value)
       .subscribe(() => this.router.navigateByUrl('admin/livrable'));
   }
-  annulerAjout() {
+
+  cancelSaveLivrable() {
     this.router.navigateByUrl('/admin/livrable');
   }
 }

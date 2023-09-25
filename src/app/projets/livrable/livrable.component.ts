@@ -12,16 +12,18 @@ import { LivrableService } from 'src/app/services/livrable.service';
   styleUrls: ['./livrable.component.css'],
 })
 export class LivrableComponent implements OnInit {
-  livrables!:Observable<Array<Livrable>>;
-  livrables2!:any;
+  livrables!: Observable<Array<Livrable>>;
+  livrables2!: any;
   errorMessage!: string;
   searchFormGroup: FormGroup | undefined;
+
   constructor(
     private livrableService: LivrableService,
     public authService: AuthService,
     private router: Router,
     private fb: FormBuilder
   ) {}
+
   ngOnInit(): void {
     this.searchFormGroup = this.fb.group({
       keyword: this.fb.control(''),
@@ -31,23 +33,24 @@ export class LivrableComponent implements OnInit {
       this.authService.roles == 'FORMATEUR' ||
       this.authService.roles == 'ADMIN FORMATEUR'
     ) {
-      console.log('roles=' + this.authService.roles);
       this.handleSearchLivrables();
     } else {
-      console.log('roles=' + this.authService.roles);
-      this.findLivrablesByUsername();
+      this.getLivrablesByUsername();
     }
   }
-  supprimerLivrable(id: number) {
+
+  deleteLivrable(id: number) {
     let conf = confirm('Êtes-vous sûr de vouloir supprimer ce livrable ?');
     if (!conf) return;
     this.livrableService.deleteLivrable(id).subscribe(() => {
       this.handleSearchLivrables();
     });
   }
-  ajouterLivrable() {
+
+  goToPageAddLivrable() {
     this.router.navigateByUrl('/admin/addlivrable');
   }
+
   handleSearchLivrables() {
     let kw = this.searchFormGroup?.value.keyword;
     this.livrables = this.livrableService.searchLivrable(kw).pipe(
@@ -57,9 +60,12 @@ export class LivrableComponent implements OnInit {
       })
     );
   }
-  findLivrablesByUsername() {
-    this.livrableService.getLivrablesByUsername(this.authService.username).subscribe((data) => {
-      this.livrables2 = data;
-    });
+
+  getLivrablesByUsername() {
+    this.livrableService
+      .getLivrablesByUsername(this.authService.username)
+      .subscribe((data) => {
+        this.livrables2 = data;
+      });
   }
 }

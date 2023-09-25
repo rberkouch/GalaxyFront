@@ -11,8 +11,9 @@
             <div *ngIf="searchFormGroup">
                 <form [formGroup]="searchFormGroup" (ngSubmit)="findUsersIfRoleIsApprenant()">
                     <div class="input-group">
-                        <label class="input-group-text">Recherche par nom :</label>
-                        <input type="text" formControlName="keyword" class="form-control">
+                        <label class="input-group-text" for="nomSujet">Recherche par nom :</label>
+                        <input type="text" id="nomSujet" formControlName="keyword" class="form-control"
+                            autocomplete="off">
                         <button class="btn btn-info">
                             <i class="bi bi-search"></i>
                         </button>
@@ -28,15 +29,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let c of users | async">
+                    <tr *ngFor="let c of users  | async; let i = index;">
                         <td>
                             <img [src]="'https://robohash.org/' + c.userId" width="50" alt="">
                         </td>
                         <td>{{c.firstName}}</td>
                         <td>{{c.lastName}}</td>
                         <td>
-                            <div class="form-check form-switch"><input class="form-check-input" type="checkbox"
-                                    id="flexSwitchCheckDefault" (change)="affectOrNoSujetToUser(c)" #checkBoxId></div>
+                            <ng-container *ngIf="value; then loggedIn; else loggedOut">
+                            </ng-container>
+
+                            <ng-template #loggedIn>
+                                <div class="form-check form-switch"><input class="form-check-input" type="checkbox"
+                                        id="flexSwitchCheckDefault" (change)="affectOrNoSujetToUser(c)" #checkBoxId checked="true">
+                                </div>
+                            </ng-template>
+                            <ng-template #loggedOut>
+                                <div class="form-check form-switch"><input class="form-check-input" type="checkbox"
+                                        id="flexSwitchCheckDefault" (change)="affectOrNoSujetToUser(c)" #checkBoxId checked="false">
+                                </div>
+                            </ng-template>
+
                         </td>
                     </tr>
                 </tbody>
