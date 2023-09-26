@@ -11,15 +11,16 @@ import { SujetService } from 'src/app/services/sujet.service';
   styleUrls: ['./add-sujet.component.css'],
 })
 export class AddSujetComponent implements OnInit {
+  levelType = Object.values(Level);
+  sujetForm!: FormGroup;
+  
   constructor(
     private sujetService: SujetService,
     private fb: FormBuilder,
     public authService: AuthService,
     private router: Router
   ) {}
-  levelType = Object.values(Level);
-  sujetForm!: FormGroup;
-
+  
   ngOnInit(): void {
     this.sujetForm = this.fb.group({
       title: this.fb.control(null, [Validators.required]),
@@ -38,7 +39,7 @@ export class AddSujetComponent implements OnInit {
       .addSujet(this.sujetForm.value)
       .subscribe(() => this.router.navigateByUrl('admin/sujet'));
   }
-  annulerAjout() {
+  cancelSaveSujet() {
     this.router.navigateByUrl('/admin/sujet');
   }
 }

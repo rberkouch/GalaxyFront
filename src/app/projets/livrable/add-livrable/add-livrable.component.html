@@ -98,9 +98,7 @@
                                             <div formArrayName="utilisateurs">
                                                 <div *ngFor="let user of utilisateurs.controls; let i=index">
                                                     <div [formGroupName]="i">
-                                                        <input id="userId" class="form-control form-control-lg"
-                                                            type="hidden" [(ngModel)]="utilisateur.userId"
-                                                            ngModelOptions="{standalone: true}"
+                                                        <input class="form-control form-control-lg" type="text"
                                                             formControlName="userId" />
                                                     </div>
                                                 </div>
@@ -108,10 +106,9 @@
                                         </div>
                                     </div>
                                     <button type="reset" class="btn btn-danger btn-lg ms-2"
-                                        (click)="annulerAjout()">Annuler</button>
+                                        (click)="cancelSaveLivrable()">Annuler</button>
                                     <button [disabled]="!livrableForm.valid" class="btn btn-success btn-lg ms-2"
                                         (click)="saveLivrable()">Ajouter</button>
-
                                 </div>
                             </div>
 

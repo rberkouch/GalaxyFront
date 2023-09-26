@@ -36,7 +36,8 @@
             <p [align]="alignement">{{sujet.expectedDelivery}}</p>
             <h6 class="card-title" [align]="alignement" style="color:green;">Évaluation du développeur :</h6>
             <p [align]="alignement">{{sujet.developerRating}}</p>
-            <button type="button" class="btn btn-warning me-1" (click)="afficherAllSujets()">Retour vers la liste des
+            <button type="button" class="btn btn-warning me-1" (click)="goToPageDisplayAllSujets()">Retour vers la liste
+              des
               sujets</button>
           </div>
         </div>
@@ -50,8 +51,8 @@
         </div>
         <div class="row">
           <div class="col-sm">
-            <button type="button" class="btn btn-secondary me-1"
-              (click)="generatePDF(sujet,'download')"><span class="bi bi-file-pdf"></span>Télécharger</button>
+            <button type="button" class="btn btn-secondary me-1" (click)="generatePDF(sujet,'download')"><span
+                class="bi bi-file-pdf"></span>Télécharger</button>
           </div>
         </div>
         <div class="row">

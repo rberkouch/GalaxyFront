@@ -34,7 +34,6 @@ export class AuthService {
     let decodedJwt: any = jwtDecode(this.accessToken);
     this.username = decodedJwt.sub;
     this.roles = decodedJwt.scope;
-    console.log('******************', this.roles);
 
     window.localStorage.setItem('jwt-token', this.accessToken);
   }

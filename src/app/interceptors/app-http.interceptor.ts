@@ -16,7 +16,6 @@ export class AppHttpInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    console.log(request.url);
     if (!request.url.includes('/auth/logi')) {
       let newRequest = request.clone({
         headers: request.headers.set(

@@ -6,8 +6,8 @@
           <h4>Les livrables</h4>
         </div>
         <div class="col">
-          <button class="btn btn-success" *ngIf="authService.roles.includes('APPRENANT')" (click)="ajouterLivrable()"><i
-              class="bi bi-plus "></i>Ajouter un
+          <button class="btn btn-success" *ngIf="authService.roles.includes('APPRENANT')"
+            (click)="goToPageAddLivrable()"><i class="bi bi-plus "></i>Ajouter un
             livrable</button>
         </div>
       </div>
@@ -18,8 +18,8 @@
         <div *ngIf="searchFormGroup">
           <form [formGroup]="searchFormGroup" (ngSubmit)="handleSearchLivrables()">
             <div class="input-group">
-              <label class="input-group-text">Recherche par nom de repository :</label>
-              <input type="text" formControlName="keyword" class="form-control">
+              <label class="input-group-text" for="nomLivrable">Recherche par nom de repository :</label>
+              <input type="text" id="nomLivrable" formControlName="keyword" class="form-control">
               <button class="btn btn-info">
                 <i class="bi bi-search"></i>
               </button>
@@ -39,8 +39,7 @@
                   target="_blank">{{u.username}}/{{l.repoName}}</a></p>
             </td>
             <td>
-              <button *ngIf="authService.roles.includes('USER') || authService.roles.includes('FORMATEUR')"
-                (click)="supprimerLivrable(l.id)" class="btn btn-danger">
+              <button (click)="deleteLivrable(l.id)" class="btn btn-danger">
                 <i class="bi bi-trash"></i>
               </button>
             </td>
@@ -51,12 +50,6 @@
             <td>
               <p *ngFor="let u of l.utilisateurs"><a href="{{l.gitUrl}}"
                   target="_blank">{{u.username}}/{{l.repoName}}</a></p>
-            </td>
-            <td>
-              <button *ngIf="authService.roles.includes('USER') || authService.roles.includes('FORMATEUR')"
-                (click)="supprimerLivrable(l.id)" class="btn btn-danger">
-                <i class="bi bi-trash"></i>
-              </button>
             </td>
           </tr>
         </tbody>

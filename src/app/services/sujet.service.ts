@@ -17,6 +17,18 @@ export class SujetService {
   public getSujetsByUsername(username: string): Observable<any> {
     return this.http.get(environment.backendHost + '/sujets/user/' + username);
   }
+  public getDocumentProjetUtilisateurs(
+    suejtId: number,
+    userId: string
+  ): Observable<any> {
+    return this.http.get(
+      environment.backendHost +
+        '/documentProjetUtilisateurs/' +
+        suejtId +
+        '/' +
+        userId
+    );
+  }
   public getSujetById(id: number) {
     return this.http.get<any>(environment.backendHost + '/sujets/' + id);
   }

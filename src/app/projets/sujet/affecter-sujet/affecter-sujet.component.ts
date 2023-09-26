@@ -17,13 +17,14 @@ export class AffecterSujetComponent implements OnInit {
   errorMessage!: string;
   searchFormGroup: FormGroup | undefined;
   @ViewChild('checkBoxId') checkBoxId!: ElementRef;
+  value:boolean=true;
   constructor(
     private userService: UserService,
     private sujetService: SujetService,
     private fb: FormBuilder,
     private router: Router
   ) {}
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.searchFormGroup = this.fb.group({
       keyword: this.fb.control(''),
     });
@@ -44,16 +45,16 @@ export class AffecterSujetComponent implements OnInit {
     if (this.checkBoxId.nativeElement.checked) {
       this.sujetService
         .affectSujetToUser(sujetIdStringify, user.userId)
-        .subscribe(() => {
-           
-        });
+        .subscribe(() => {});
     } else {
       this.sujetService
         .deleteOneFromDocumentProjetUtilisateurs(sujetIdNumber, user.userId)
-        .subscribe(() => {
-          
-        });
+        .subscribe(() => {});
     }
   }
-  
+  findAllDocumentProjetUtilisateurs(user: User) {
+    this.sujetService
+      .getDocumentProjetUtilisateurs(Number(this.sujetId), user.userId)
+      .subscribe(() => {});
+  }
 }
