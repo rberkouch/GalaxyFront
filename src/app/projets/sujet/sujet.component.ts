@@ -17,12 +17,19 @@ export class SujetComponent implements OnInit {
     private router: Router
   ) {}
   ngOnInit(): void {
-    if (
-      this.authService.roles == 'ADMIN USER' ||
-      this.authService.roles == 'FORMATEUR'
-    ) {
+    const role_admin: boolean = String(this.authService.roles).includes(
+      'ADMIN'
+    );
+    const role_formateur: boolean = String(this.authService.roles).includes(
+      'FORMATEUR'
+    );
+    const role_apprenant: boolean = String(this.authService.roles).includes(
+      'APPRENANT'
+    );
+
+    if (role_admin || role_formateur) {
       this.getSujets();
-    } else {
+    } else if (role_apprenant) {
       this.getSujetsByUsername();
     }
   }

@@ -36,7 +36,7 @@ import { AddLivrableComponent } from './projets/livrable/add-livrable/add-livrab
 import { RoleComponent } from './gestion/role/role.component';
 import { AddRoleComponent } from './gestion/role/add-role/add-role.component';
 import { AffecterSujetComponent } from './projets/sujet/affecter-sujet/affecter-sujet.component';
-
+import * as $ from "jquery";
 @NgModule({
   declarations: [
     AppComponent,

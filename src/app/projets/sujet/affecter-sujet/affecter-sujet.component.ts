@@ -2,7 +2,9 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, catchError, throwError } from 'rxjs';
+import { DocumentProjetUtilisateurs } from 'src/app/model/document-projet-utilisateurs';
 import { User } from 'src/app/model/user';
+import { DocumentProjetUtilisateursService } from 'src/app/services/document-projet-utilisateurs.service';
 import { SujetService } from 'src/app/services/sujet.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -14,21 +16,27 @@ import { UserService } from 'src/app/services/user.service';
 export class AffecterSujetComponent implements OnInit {
   users!: Observable<Array<User>>;
   sujetId = localStorage.getItem('editSujetId');
+  sujetIdStringify = String(this.sujetId);
+  sujetIdNumber = Number(this.sujetId);
   errorMessage!: string;
   searchFormGroup: FormGroup | undefined;
+  documentProjetUtilisateurs!:DocumentProjetUtilisateurs[];
   @ViewChild('checkBoxId') checkBoxId!: ElementRef;
-  value:boolean=true;
+  value: boolean = false;
   constructor(
+    private documentProjetUtilisateursService: DocumentProjetUtilisateursService,
     private userService: UserService,
     private sujetService: SujetService,
-    private fb: FormBuilder,
-    private router: Router
+    private fb: FormBuilder
   ) {}
   ngOnInit(): void {
     this.searchFormGroup = this.fb.group({
       keyword: this.fb.control(''),
     });
     this.findUsersIfRoleIsApprenant();
+    this.documentProjetUtilisateursService.getAllDocumentProjetUtilisateurs().subscribe((data)=>{
+      this.documentProjetUtilisateurs = data;
+    })
   }
   findUsersIfRoleIsApprenant() {
     let kw = this.searchFormGroup?.value.keyword;
@@ -39,22 +47,15 @@ export class AffecterSujetComponent implements OnInit {
       })
     );
   }
-  affectOrNoSujetToUser(user: User) {
-    const sujetIdStringify = String(this.sujetId);
-    const sujetIdNumber = Number(this.sujetId);
+  affectOrNoSujetToUser(id: string) {
     if (this.checkBoxId.nativeElement.checked) {
-      this.sujetService
-        .affectSujetToUser(sujetIdStringify, user.userId)
+      this.documentProjetUtilisateursService
+        .affectSujetToUser(this.sujetIdStringify, id)
         .subscribe(() => {});
     } else {
-      this.sujetService
-        .deleteOneFromDocumentProjetUtilisateurs(sujetIdNumber, user.userId)
+      this.documentProjetUtilisateursService
+        .deleteOneFromDocumentProjetUtilisateurs(this.sujetIdNumber, id)
         .subscribe(() => {});
     }
-  }
-  findAllDocumentProjetUtilisateurs(user: User) {
-    this.sujetService
-      .getDocumentProjetUtilisateurs(Number(this.sujetId), user.userId)
-      .subscribe(() => {});
   }
 }
