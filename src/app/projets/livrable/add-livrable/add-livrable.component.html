@@ -98,7 +98,7 @@
                                             <div formArrayName="utilisateurs">
                                                 <div *ngFor="let user of utilisateurs.controls; let i=index">
                                                     <div [formGroupName]="i">
-                                                        <input class="form-control form-control-lg" type="text"
+                                                        <input class="form-control form-control-lg" type="hidden"
                                                             formControlName="userId" />
                                                     </div>
                                                 </div>
