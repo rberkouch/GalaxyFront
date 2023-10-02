@@ -17,7 +17,6 @@ export class AffecterSujetComponent implements OnInit {
   errorMessage!: string;
   searchFormGroup: FormGroup | undefined;
   @ViewChild('checkBoxId') checkBoxId!: ElementRef;
-  value:boolean=true;
   constructor(
     private userService: UserService,
     private sujetService: SujetService,

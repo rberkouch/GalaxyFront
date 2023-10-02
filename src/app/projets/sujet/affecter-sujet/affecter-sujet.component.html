@@ -36,19 +36,9 @@
                         <td>{{c.firstName}}</td>
                         <td>{{c.lastName}}</td>
                         <td>
-                            <ng-container *ngIf="value; then loggedIn; else loggedOut">
-                            </ng-container>
-
-                            <ng-template #loggedIn>
                                 <div class="form-check form-switch"><input class="form-check-input" type="checkbox"
-                                        id="flexSwitchCheckDefault" (change)="affectOrNoSujetToUser(c)" #checkBoxId checked="true">
+                                        id="flexSwitchCheckDefault" (change)="affectOrNoSujetToUser(c)" #checkBoxId>
                                 </div>
-                            </ng-template>
-                            <ng-template #loggedOut>
-                                <div class="form-check form-switch"><input class="form-check-input" type="checkbox"
-                                        id="flexSwitchCheckDefault" (change)="affectOrNoSujetToUser(c)" #checkBoxId checked="false">
-                                </div>
-                            </ng-template>
 
                         </td>
                     </tr>
