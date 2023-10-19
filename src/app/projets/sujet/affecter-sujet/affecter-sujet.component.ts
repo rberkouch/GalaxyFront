@@ -1,4 +1,11 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, catchError, of, throwError } from 'rxjs';
@@ -16,7 +23,7 @@ export class AffecterSujetComponent implements OnInit {
   sujetId = localStorage.getItem('editSujetId') as boolean | null;
   errorMessage!: string;
   searchFormGroup: FormGroup | undefined;
-  @ViewChild('checkBoxId') checkBoxId!: ElementRef;
+  //@ViewChild('checkBoxId') checkBoxId!: ElementRef;
   listeUtilisateur!: User[];
   constructor(
     private userService: UserService,
@@ -41,10 +48,11 @@ export class AffecterSujetComponent implements OnInit {
       })
     );
   }
-  affectOrNoSujetToUser(user: User) {
+  affectOrNoSujetToUser(user: User, checkBoxId: any) {
     const sujetIdStringify = String(this.sujetId);
     const sujetIdNumber = Number(this.sujetId);
-    if (this.checkBoxId.nativeElement.checked) {
+    console.log('method clicked ', checkBoxId.target.checked);
+    if (checkBoxId.target.checked) {
       this.sujetService
         .affectSujetToUser(sujetIdStringify, user.userId)
         .subscribe(() => {});
