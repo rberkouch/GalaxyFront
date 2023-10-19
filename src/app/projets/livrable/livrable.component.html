@@ -101,7 +101,7 @@
           
         </tbody>
       </table>
-      <form *ngIf="idLivrable!=0" (ngSubmit)="validerAjout()">
+      <form *ngIf="affichageAjout" (ngSubmit)="validerAjout()">
         <div class="form-group">
           <div class="form-group">
             <label for="exampleFormControlTextarea1">Ajouter un avis</label>
@@ -116,12 +116,16 @@
           <tr>
             <th scope="col">Formateur</th>
             <th scope="col">Avis</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let a of avis">
             <td>{{a.utilisateur.firstName}}</td>
             <td>{{a.texteAvis}}</td>
+            <td><button *ngIf="a.utilisateur.username==connectedUser" (click)="deleteAvis(a.id)" class="btn btn-danger">
+              <i class="bi bi-trash"></i>
+            </button></td>
           </tr>
         </tbody>
       </table>

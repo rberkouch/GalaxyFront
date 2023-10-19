@@ -22,4 +22,10 @@ export class AvisService {
     
     return this.http.get(environment.backendHost + `/avis/${id}`);
   }
+
+  public deleteAvis(id: number): Observable<any> {
+    return this.http.delete(environment.backendHost + `/avis/${id}`);
+  }
+
+  
 }

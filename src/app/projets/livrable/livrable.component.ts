@@ -24,7 +24,9 @@ export class LivrableComponent implements OnInit {
   idLivrable!:number;
   avisAjout!:avis;
   affichageAvis=false;
+  affichageAjout=false;
   showAlert = false;
+  connectedUser!:string;
 
   constructor(
     private livrableService: LivrableService,
@@ -40,12 +42,10 @@ export class LivrableComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.connectedUser=this.authService.username;
     this.avis = new Array();
     this.idLivrable=0;
     this.avisAjout=new avis();
-    this.userService.get(this.authService.username).subscribe(
-      response=>this.avisAjout.utilisateur=response
-    )
     this.searchFormGroup = this.fb.group({
       keyword: this.fb.control(''),
     });
@@ -92,11 +92,13 @@ export class LivrableComponent implements OnInit {
 
   afficherAvis(l:Livrable)
   {
+    console.log(this.connectedUser)
     if(this.affichageAvis==false)
     {
       this.affichageAvis=true;
       //this.avis=l.avis;
       this.getAvisById(l.id);
+      this.idLivrable=l.id;
     }
     else
     {
@@ -107,7 +109,7 @@ export class LivrableComponent implements OnInit {
 
   AjouterAvis(id:number)
   {
-    if(this.idLivrable!=0)
+   /* if(this.idLivrable!=0)
     {
       this.idLivrable=0;
     }
@@ -115,18 +117,32 @@ export class LivrableComponent implements OnInit {
     {
     this.idLivrable=id;
     //console.log(this.authService.username)
+  }*/
+  if(this.affichageAjout==false)
+  {
+    this.affichageAjout=true;
+    this.idLivrable=id;
+    this.userService.get(this.authService.username).subscribe(
+      response=>this.avisAjout.utilisateur=response
+    )
+  }
+  else
+  {
+    this.affichageAjout=false;
+    this.idLivrable=0;
   }
     
   }
 
   validerAjout()
   {
-    console.log(this.avisAjout.texteAvis)
-    console.log(this.avisAjout.utilisateur.userId)
+    //console.log(this.avisAjout.texteAvis)
+    //console.log(this.avisAjout.utilisateur.userId)
     this.avisAjout.livrable=new Livrable();
    this.avisAjout.livrable.id=this.idLivrable;
    this.avisService.addAvis(this.avisAjout).subscribe(
     response=>{console.log("ajout ok")
+    this.affichageAjout=false;
     this.idLivrable=0
     //this.avis.push(response)
     this.getAvisById(this.idLivrable);
@@ -145,6 +161,16 @@ export class LivrableComponent implements OnInit {
     this.avisService.getAvisById(id).subscribe(
       response=>{
         this.avis=response;
+      }
+    )
+  }
+
+  deleteAvis(id:number)
+  {
+    this.avisService.deleteAvis(id).subscribe(
+      response=>
+      {
+        this.getAvisById(this.idLivrable);
       }
     )
   }
