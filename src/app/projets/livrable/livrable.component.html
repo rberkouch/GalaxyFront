@@ -31,6 +31,8 @@
         <thead>
           <th>Les repositories</th>
           <th *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('FORMATEUR')">Action</th>
+          <th>Afficher les avis</th>
+          <th *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('FORMATEUR')">Ajouter un avis</th>
         </thead>
         <tbody *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('FORMATEUR')">
           <tr *ngFor="let l of livrables | async">
@@ -43,7 +45,30 @@
                 <i class="bi bi-trash"></i>
               </button>
             </td>
+            <td>
+              <button type="button" class="btn btn-primary" (click)="afficherAvis(l)">Afficher les Avis</button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-info" (click)="AjouterAvis(l.id)">Ajouter un avis</button>
+            </td>
           </tr>
+         <!-- <tr *ngIf="avis.length!=0">
+            <table class="table table-striped"  *ngIf="this.affichageAvis">
+              <thead>
+                <tr>
+                  <th scope="col">Formateur</th>
+                  <th scope="col">Avis</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let a of avis">
+                  <td>{{a.utilisateur.firstName}}</td>
+                  <td>{{a.texteAvis}}</td>
+                </tr>
+              </tbody>
+            </table>
+           
+          </tr>-->
         </tbody>
         <tbody *ngIf="authService.roles.includes('APPRENANT')">
           <tr *ngFor="let l of livrables2">
@@ -51,9 +76,58 @@
               <p *ngFor="let u of l.utilisateurs"><a href="{{l.gitUrl}}"
                   target="_blank">{{u.username}}/{{l.repoName}}</a></p>
             </td>
+            <td>
+              <button type="button" class="btn btn-primary" (click)="afficherAvis(l)">Afficher les Avis</button>
+            </td>
+          </tr>
+
+         <!--     <tr *ngIf="avis.length!=0">
+            <table class="table table-striped"  *ngIf="this.affichageAvis">
+              <thead>
+                <tr>
+                  <th scope="col">Formateur</th>
+                  <th scope="col">Avis</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let a of avis">
+                  <td>{{a.utilisateur.firstName}}</td>
+                  <td>{{a.texteAvis}}</td>
+                </tr>
+              </tbody>
+            </table>
+           
+          </tr>  --> 
+          
+        </tbody>
+      </table>
+      <form *ngIf="idLivrable!=0" (ngSubmit)="validerAjout()">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Ajouter un avis</label>
+            <textarea class="form-control" id="texteAvis" name="texteAvis" [(ngModel)]="avisAjout.texteAvis"
+              rows="3"></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+      </form>
+      <table class="table table-striped"  *ngIf="this.affichageAvis">
+        <thead>
+          <tr>
+            <th scope="col">Formateur</th>
+            <th scope="col">Avis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let a of avis">
+            <td>{{a.utilisateur.firstName}}</td>
+            <td>{{a.texteAvis}}</td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
 </div>
+<ngb-alert *ngIf="showAlert" [dismissible]="true" type="success">
+  Ajout réussi.
+</ngb-alert>

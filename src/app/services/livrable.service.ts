@@ -11,6 +11,9 @@ export class LivrableService {
   constructor(private http: HttpClient) {}
 
   public getLivrables(): Observable<any> {
+    this.http.get(environment.backendHost + '/livrables').subscribe(
+      response=>{console.log(response)}
+    )
     return this.http.get(environment.backendHost + '/livrables');
   }
   public getLivrablesByUsername(username: string): Observable<any> {

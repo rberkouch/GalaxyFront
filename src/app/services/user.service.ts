@@ -84,4 +84,9 @@ export class UserService {
   public deleteUser(id: string) {
     return this.http.delete(environment.backendHost + '/user/' + id);
   }
+
+  public findUserBySujet(id:number)
+  {
+    return this.http.get<any>(`${this.host}/userWithDocumentSujet/` + id);
+  }
 }
