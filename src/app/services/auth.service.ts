@@ -12,6 +12,7 @@ export class AuthService {
   roles: any;
   username: any;
   accessToken!: any;
+  firstLogin!:number
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -31,6 +32,8 @@ export class AuthService {
   loadProfile(data: any) {
     this.isAuthenticated = true;
     this.accessToken = data['access-token'];
+    this.firstLogin=data['firstLogin'];
+   // console.log(this.firstLogin);
     let decodedJwt: any = jwtDecode(this.accessToken);
     this.username = decodedJwt.sub;
     this.roles = decodedJwt.scope;

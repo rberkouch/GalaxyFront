@@ -11,6 +11,14 @@ export class AdminTemplateComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    this.router.navigateByUrl('/admin/formation');
+    if(this.authService.firstLogin==0)
+        {
+          this.router.navigateByUrl('/admin/updatePassword');
+        }
+        else
+        {
+          this.router.navigateByUrl('/admin/formation');
+        }
+    //this.router.navigateByUrl('/admin/formation');
   }
 }

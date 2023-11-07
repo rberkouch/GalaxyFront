@@ -1,0 +1,40 @@
+<div class="container">
+    <h1>Exemple de tableau Bootstrap</h1>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Titre sujet</th>
+          <th scope="col">Type</th>
+          <th scope="col">Action 1</th>
+          <th scope="col">Action 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let notif of notifications">
+          <th scope="row">{{notif.id}}</th>
+          <td>{{notif.sujet.title}}</td>
+          <td>{{notif.type}}</td>
+          <td><button *ngIf="notif.type=='suppression'; else ajout" type="button" class="btn btn-success" (click)="validerSuppression(notif)">Valider la Suppression</button>
+            <ng-template #ajout>
+                <button type="button" class="btn btn-success" (click)="validerLajout(notif)">Valider l'ajout</button>
+            
+              </ng-template>  
+        </td>
+        <td> <button *ngIf="notif.type=='suppression'; else refuserAjout" type="button" class="btn btn-danger" (click)="RejeterSuppression(notif)">Rejeter la Suppression</button>
+          <ng-template #refuserAjout>
+            <button type="button" class="btn btn-danger" (click)="AnnulerLajout(notif)">Annuler l'ajout</button>
+        
+          </ng-template> 
+        </td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #ajout>
+    <button type="button" class="btn btn-primary">Valider l'ajout</button>
+
+  </ng-template>
+

@@ -36,6 +36,9 @@ import { AddLivrableComponent } from './projets/livrable/add-livrable/add-livrab
 import { RoleComponent } from './gestion/role/role.component';
 import { AddRoleComponent } from './gestion/role/add-role/add-role.component';
 import { AffecterSujetComponent } from './projets/sujet/affecter-sujet/affecter-sujet.component';
+import { NotificationComponent } from './projets/notification/notification.component';
+import { SujetSuppComponent } from './projets/sujet/sujet-supp/sujet-supp.component';
+import { UpdatePasswordComponent } from './gestion/utilisateurs/update-password/update-password.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +70,9 @@ import { AffecterSujetComponent } from './projets/sujet/affecter-sujet/affecter-
     RoleComponent,
     AddRoleComponent,
     AffecterSujetComponent,
+    NotificationComponent,
+    SujetSuppComponent,
+    UpdatePasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,6 +82,8 @@ import { AffecterSujetComponent } from './projets/sujet/affecter-sujet/affecter-
     ReactiveFormsModule,
     PdfViewerModule,
     NgbModule,
+    
+    
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AppHttpInterceptor, multi: true },

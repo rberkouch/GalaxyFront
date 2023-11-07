@@ -14,6 +14,10 @@ export class SujetService {
   public getSujets(): Observable<any> {
     return this.http.get(environment.backendHost + '/sujets');
   }
+
+  public getSujetsSupp(): Observable<any> {
+    return this.http.get(environment.backendHost + '/sujetsSupp');
+  }
   public getSujetsByUsername(username: string): Observable<any> {
     return this.http.get(environment.backendHost + '/sujets/user/' + username);
   }
@@ -34,6 +38,7 @@ export class SujetService {
   }
 
   public addSujet(sujet: Sujet): Observable<any> {
+    sujet.statut=1;
     return this.http.post(environment.backendHost + '/sujets', sujet);
   }
 

@@ -23,7 +23,7 @@
                 (click)="goToPageAffectSujet(s)">Affecter</button>
               <button type="button" class="btn btn-danger"
                 *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('FORMATEUR')"
-                (click)="deleteSujet(s.id)">Supprimer</button>
+                (click)="openModal(modalContent,s)" [disabled]="afficherButton(s)">Demande de Suppression</button>
             </div>
           </div>
         </div>
@@ -32,3 +32,18 @@
 
   </div>
 </section>
+
+<ng-template #modalContent>
+  <div class="modal-header">
+    <h4 class="modal-title">Confirmation de Suppression</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modalReference.dismiss('Close click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <textarea class="form-control" [(ngModel)]="notificationMessage"></textarea>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="saveNotification()">Enregistrer</button>
+  </div>
+</ng-template>

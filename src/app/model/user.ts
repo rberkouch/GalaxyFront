@@ -1,3 +1,5 @@
+import { Profile } from "./Profile";
+
 export class User {
   public userId: string;
   public firstName: string;
@@ -7,6 +9,7 @@ export class User {
   public profileImageUrl: string;
   public active: boolean;
   public roles: any;
+  public profile!:Profile;
 
   constructor() {
     this.userId = '';
