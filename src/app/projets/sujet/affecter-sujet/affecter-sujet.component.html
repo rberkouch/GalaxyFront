@@ -36,9 +36,11 @@
                         <td>{{c.firstName}}</td>
                         <td>{{c.lastName}}</td>
                         <td>
-                                <div class="form-check form-switch"><input class="form-check-input" type="checkbox"
-                                        id="flexSwitchCheckDefault" (change)="affectOrNoSujetToUser(c)" [checked]="verifierUserDansLaListe(c.userId)" #checkBoxId>
-                                </div>
+                            <div class="form-check form-switch"><input class="form-check-input" type="checkbox"
+                                    id="flexSwitchCheckDefault" (change)="affectOrNoSujetToUser(c,$event)"
+                                    [checked]="verifierUserDansLaListe(c.userId)" #checkBoxId>
+
+                            </div>
 
                         </td>
                     </tr>
