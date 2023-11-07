@@ -6,4 +6,5 @@ export class Sujet extends DocumentProjet {
   stackTechnique!: string;
   expectedDelivery!: string;
   developerRating!: string;
+  statut!:number
 }

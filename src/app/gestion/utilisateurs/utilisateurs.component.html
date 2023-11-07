@@ -32,6 +32,7 @@
               <th>Prénom </th>
               <th>Nom de famille </th>
               <th>Nom d'utilisateur </th>
+              <th>profile </th>
               <th>Email </th>
               <th>Compte actif </th>
               <th>Role </th>
@@ -46,6 +47,7 @@
               <td>{{c.firstName}}</td>
               <td>{{c.lastName}}</td>
               <td>{{c.username}}</td>
+              <td><span *ngIf="c.profile!=null">{{c.profile.libelle}}</span></td>
               <td>{{c.email}}</td>
               <td>{{c.active ? "Oui" : "Non"}}</td>
               <td>

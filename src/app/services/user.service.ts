@@ -3,9 +3,13 @@ import { HttpClient, HttpEvent } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { User } from '../model/user';
+import { AuthService } from './auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
+
+
+
   private host = environment.backendHost;
   private _userCourant: any;
 
@@ -19,7 +23,7 @@ export class UserService {
     return this.http.get<any>(`${this.host}/find/` + id);
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private authSerivce: AuthService) {}
 
   public getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.host}/user/list`);
@@ -83,5 +87,18 @@ export class UserService {
 
   public deleteUser(id: string) {
     return this.http.delete(environment.backendHost + '/user/' + id);
+  }
+
+  public findUserBySujet(id:number)
+  {
+    return this.http.get<any>(`${this.host}/userWithDocumentSujet/` + id);
+  }
+
+  public changePassword(pass:string)
+  {
+    const formData = new FormData();
+    formData.append("username",this.authSerivce.username)
+    formData.append("password",pass)
+    return this.http.post(`${this.host}/updatePassword`,formData);
   }
 }

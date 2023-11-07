@@ -46,8 +46,14 @@
         <div class="mb-3">
           <label for="roles" class="form-label">Définition des rôles : </label>
 
-          <select class="form-control" type="number" formControlName="roles" multiple>
+          <select class="form-control" type="number" formControlName="roles" (change)="onRolesChange()" multiple >
             <option *ngFor="let r of appRoles" [ngValue]="r">{{r.role}}</option>
+          </select>
+        </div>
+        <div class="mb-3" *ngIf="afficherProfile==true">
+          <label for="profile" class="form-label">Profil de l'utilisateur :</label>
+          <select class="form-control" formControlName="profile">
+            <option *ngFor="let p of profiles" [ngValue]="p">{{ p.libelle }}</option>
           </select>
         </div>
         <div class="mb-3">

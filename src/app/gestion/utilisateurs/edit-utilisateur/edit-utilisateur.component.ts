@@ -4,6 +4,8 @@ import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppRoleService } from 'src/app/services/app-role.service';
+import { Profile } from 'src/app/model/Profile';
+import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
   selector: 'app-edit-utilisateur',
@@ -13,6 +15,7 @@ import { AppRoleService } from 'src/app/services/app-role.service';
 export class EditUtilisateurComponent implements OnInit {
   newUserFormGroup: any = null;
   appRoles!: any[];
+  profiles!:Profile[]
   object1: any = new User();
 
   constructor(
@@ -20,6 +23,7 @@ export class EditUtilisateurComponent implements OnInit {
     private userService: UserService,
     private appRoleService: AppRoleService,
     private route: ActivatedRoute,
+    private profileService:ProfileService,
     private router:Router,
   ) {}
 
@@ -47,6 +51,7 @@ export class EditUtilisateurComponent implements OnInit {
       ]),
       roles: this.fb.control(this.object1.roles, [Validators.required]),
       active: this.fb.control(this.object1.active, [Validators.required]),
+      profile: this.fb.control(this.object1.profile, [Validators.required])
     });
     this.userService
       .getUsersByUsername(this.route.snapshot.params['username'])
@@ -79,10 +84,18 @@ export class EditUtilisateurComponent implements OnInit {
             ]),
             roles: this.fb.control(this.object1.roles, [Validators.required]),
             active: this.fb.control(this.object1.active, [Validators.required]),
+            profile: this.fb.control(this.object1.profile, [Validators.required]), 
           });
+         // this.newUserFormGroup.get('profile').setValue(this.object1.profile); 
+         this.newUserFormGroup.patchValue({
+          profile: this.object1.profile,
+        });
+         // this.newUserFormGroup.controls['profile'].setValue(this.object1.profile, {onlySelf: true});
         },
+        
       });
       this.findAllAppRoles();
+      this.findAllProfiles();
   }
   handleSaveUser() {
     let user: User = this.newUserFormGroup.value;
@@ -102,6 +115,11 @@ export class EditUtilisateurComponent implements OnInit {
   findAllAppRoles() {
     this.appRoleService.getAppRoles().subscribe((data) => {
       this.appRoles = data;
+    });
+  }
+  findAllProfiles() {
+    this.profileService.getProfiles().subscribe((data) => {
+      this.profiles = data;
     });
   }
 }

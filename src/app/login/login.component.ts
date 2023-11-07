@@ -29,7 +29,16 @@ export class LoginComponent implements OnInit {
     this.authSerivce.login(username, pwd).subscribe({
       next: (data) => {
         this.authSerivce.loadProfile(data);
-        this.router.navigateByUrl('/admin/formation');
+        if(this.authSerivce.firstLogin==0)
+        {
+          this.router.navigateByUrl('/admin/updatePassword');
+          console.log('test 2')
+        }
+        else
+        {
+          this.router.navigateByUrl('/admin/formation');
+        }
+        
       },
       error: (err) => {
         console.log(err);

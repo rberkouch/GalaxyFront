@@ -25,6 +25,7 @@
     "jwt-decode": "^3.1.2",
     "ng-multiselect-dropdown": "^0.3.9",
     "ng2-pdf-viewer": "^9.1.5",
+    "ngx-bootstrap": "^11.0.2",
     "pdfmake": "^0.2.7",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

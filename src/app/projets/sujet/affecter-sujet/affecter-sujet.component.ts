@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, of, throwError } from 'rxjs';
 import { User } from 'src/app/model/user';
 import { SujetService } from 'src/app/services/sujet.service';
 import { UserService } from 'src/app/services/user.service';
@@ -17,6 +17,7 @@ export class AffecterSujetComponent implements OnInit {
   errorMessage!: string;
   searchFormGroup: FormGroup | undefined;
   @ViewChild('checkBoxId') checkBoxId!: ElementRef;
+  listeUtilisateur!:User[];
   constructor(
     private userService: UserService,
     private sujetService: SujetService,
@@ -24,6 +25,8 @@ export class AffecterSujetComponent implements OnInit {
     private router: Router
   ) {}
   ngOnInit(): void {
+    this.listeUtilisateur=[];
+    this.chercherUtilisateurSujet()
     this.searchFormGroup = this.fb.group({
       keyword: this.fb.control(''),
     });
@@ -55,5 +58,26 @@ export class AffecterSujetComponent implements OnInit {
     this.sujetService
       .getDocumentProjetUtilisateurs(Number(this.sujetId), user.userId)
       .subscribe(() => {});
+  }
+
+  chercherUtilisateurSujet()
+  {
+    let idSujet=Number(localStorage.getItem("editSujetId")) || 0;
+    this.userService.findUserBySujet(idSujet).subscribe(
+      response=>{
+        this.listeUtilisateur=response
+        console.log(this.listeUtilisateur)
+      }
+    )
+  }
+
+  verifierUserDansLaListe(idUser:string):boolean
+  {
+    for(let u of this.listeUtilisateur)
+    {
+      if(u.userId==idUser)
+      return true;
+    }
+    return false;
   }
 }
