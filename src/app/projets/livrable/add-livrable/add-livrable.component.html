@@ -95,6 +95,14 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-outline mb-4">
+                                            <label for="Sujet" class="form-label">Sujet :</label>
+                                            <select class="form-control" formControlName="sujet">
+                                              <option *ngFor="let s of sujetUser" [ngValue]="s" >{{ s.title }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-outline mb-4">
                                             <div formArrayName="utilisateurs">
                                                 <div *ngFor="let user of utilisateurs.controls; let i=index">
                                                     <div [formGroupName]="i">

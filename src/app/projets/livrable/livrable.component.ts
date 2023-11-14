@@ -93,8 +93,9 @@ export class LivrableComponent implements OnInit {
   afficherAvis(l:Livrable)
   {
     console.log(this.connectedUser)
-    if(this.affichageAvis==false)
+    if(this.affichageAvis==false )
     {
+      this.affichageAjout=false;
       this.affichageAvis=true;
       //this.avis=l.avis;
       this.getAvisById(l.id);
@@ -103,6 +104,7 @@ export class LivrableComponent implements OnInit {
     else
     {
       this.affichageAvis=false;
+      
     }
    
   }
@@ -118,8 +120,9 @@ export class LivrableComponent implements OnInit {
     this.idLivrable=id;
     //console.log(this.authService.username)
   }*/
-  if(this.affichageAjout==false)
+ if(this.affichageAjout==false)
   {
+    this.affichageAvis=false;
     this.affichageAjout=true;
     this.idLivrable=id;
     this.userService.get(this.authService.username).subscribe(
@@ -131,7 +134,7 @@ export class LivrableComponent implements OnInit {
     this.affichageAjout=false;
     this.idLivrable=0;
   }
-    
+  
   }
 
   validerAjout()

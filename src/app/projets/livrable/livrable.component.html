@@ -30,6 +30,7 @@
       <table class="table">
         <thead>
           <th>Les repositories</th>
+          <th>Sujet</th>
           <th *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('FORMATEUR')">Action</th>
           <th>Afficher les avis</th>
           <th *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('FORMATEUR')">Ajouter un avis</th>
@@ -38,8 +39,9 @@
           <tr *ngFor="let l of livrables | async">
             <td>
               <p *ngFor="let u of l.utilisateurs"><a href="{{l.gitUrl}}"
-                  target="_blank">{{u.username}}/{{l.repoName}}</a></p>
+                  target="_blank">{{u.username}}/{{l.repoName}} </a></p>
             </td>
+            <td ><div *ngIf="l.sujet!=null">{{l.sujet.title}}</div></td>
             <td>
               <button (click)="deleteLivrable(l.id)" class="btn btn-danger">
                 <i class="bi bi-trash"></i>
@@ -76,6 +78,7 @@
               <p *ngFor="let u of l.utilisateurs"><a href="{{l.gitUrl}}"
                   target="_blank">{{u.username}}/{{l.repoName}}</a></p>
             </td>
+            <td ><div *ngIf="l.sujet!=null">{{l.sujet.title}}</div></td>
             <td>
               <button type="button" class="btn btn-primary" (click)="afficherAvis(l)">Afficher les Avis</button>
             </td>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { interval } from 'rxjs';
 import { Level } from 'src/app/enum/level.enum';
 import { notification } from 'src/app/model/notification';
 import { User } from 'src/app/model/user';
@@ -18,6 +19,7 @@ export class AddSujetComponent implements OnInit {
   levelType = Object.values(Level);
   sujetForm!: FormGroup;
   utilisateur!:User;
+  showAlert = false;
   
   constructor(
     private sujetService: SujetService,
@@ -52,13 +54,18 @@ export class AddSujetComponent implements OnInit {
         notif.sujet=response;
         notif.type="ajout";
         notif.utilisateur=this.utilisateur;
+       
         this.notificationService.addNotification(notif).subscribe(
           response=>{
             console.log("ajout notif ok");
           }
         )
-
-        this.router.navigateByUrl('admin/sujet')
+        this.showAlert = true;
+        interval(3000).subscribe(() => {
+          this.showAlert = false;
+          this.router.navigateByUrl('admin/sujet')
+        })
+        
       }
         );
   }

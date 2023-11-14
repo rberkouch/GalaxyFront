@@ -22,8 +22,8 @@
               <button type="button" class="btn btn-primary me-1" *ngIf="authService.roles.includes('FORMATEUR')"
                 (click)="goToPageAffectSujet(s)">Affecter</button>
               <button type="button" class="btn btn-danger"
-                *ngIf="authService.roles.includes('ADMIN') || authService.roles.includes('FORMATEUR')"
-                (click)="openModal(modalContent,s)" [disabled]="afficherButton(s)">Demande de Suppression</button>
+                *ngIf="authService.roles.includes('FORMATEUR')"
+                (click)="openModal(modalContent,s)" [disabled]="afficherButton(s)">Demander la Suppression</button>
             </div>
           </div>
         </div>

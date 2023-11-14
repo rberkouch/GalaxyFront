@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Level } from 'src/app/enum/level.enum';
+import { Sujet } from 'src/app/model/sujet';
 import { User } from 'src/app/model/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { LivrableService } from 'src/app/services/livrable.service';
+import { SujetService } from 'src/app/services/sujet.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -17,16 +19,23 @@ export class AddLivrableComponent implements OnInit {
   livrableForm!: FormGroup;
   utilisateurForm!: FormGroup;
   utilisateur: User = new User();
+  sujetUser!:Sujet[];
 
   constructor(
     private livrableService: LivrableService,
     public authService: AuthService,
     public userService: UserService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private sujetService:SujetService
   ) {}
 
   ngOnInit(): void {
+    this.sujetService.getSujetsByUsername(this.authService.username).subscribe(
+      response=>{
+        this.sujetUser=response;
+      }
+    )
     this.livrableForm = this.fb.group({
       title: this.fb.control(null, [Validators.required]),
       operationDate: this.fb.control(null, [Validators.required]),
@@ -35,6 +44,7 @@ export class AddLivrableComponent implements OnInit {
       repoName: this.fb.control(null, [Validators.required]),
       gitUrl: this.fb.control(null, [Validators.required]),
       utilisateurs: this.fb.array([]),
+      sujet: this.fb.control(null),
     });
     this.userService.get(this.authService.username).subscribe((data) => {
       this.utilisateur = data;

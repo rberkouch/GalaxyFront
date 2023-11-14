@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   formLogin!: FormGroup;
+  loginError: boolean = false;
   constructor(
     private fb: FormBuilder,
     private authSerivce: AuthService,
@@ -42,6 +43,8 @@ export class LoginComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
+        this.loginError = true;
+
       },
     });
   }

@@ -45,7 +45,7 @@ export class AddUtlisateurComponent {
       ]),
       roles: this.fb.control([], [Validators.required]),
       active: this.fb.control(true, [Validators.required]),
-      profile: this.fb.control(null, [Validators.required]), 
+      profile: this.fb.control(null), 
     });
     this.findAllAppRoles();
     this.findAllProfiles();
@@ -89,6 +89,8 @@ export class AddUtlisateurComponent {
       else
       {
         this.afficherProfile=false;
+       // let  p= this.profiles.find(profile => profile.id === 0);
+        this.newUserFormGroup.patchValue({ profile: null });
       }
       
     }

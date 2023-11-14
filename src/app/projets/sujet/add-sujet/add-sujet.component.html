@@ -128,7 +128,9 @@
                   </div>
                   <button type="reset" class="btn btn-danger btn-lg ms-2" (click)="cancelSaveSujet()">Annuler</button>
                   <button [disabled]="!sujetForm.valid" class="btn btn-success btn-lg ms-2">Ajouter</button>
-
+                  <ngb-alert *ngIf="showAlert" [dismissible]="true" type="success">
+                    Votre demande d'ajout a été correctement envoyée.
+                  </ngb-alert>
                 </div>
               </div>
 
