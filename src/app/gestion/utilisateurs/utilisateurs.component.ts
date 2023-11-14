@@ -42,7 +42,7 @@ export class UtilisateursComponent implements OnInit {
   }
 
   handleDeleteUser(c: User) {
-    let conf = confirm('Are you sure?');
+    let conf = confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');
     if (!conf) return;
     this.userService.deleteUser(c.userId).subscribe({
       next: (resp) => {

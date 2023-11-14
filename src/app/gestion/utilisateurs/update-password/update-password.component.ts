@@ -53,7 +53,6 @@ export class UpdatePasswordComponent implements OnInit {
   {
     this.userServive.changePassword(this.pass).subscribe(
       response=>{
-        console.log("modif ok");
         this.router.navigateByUrl('/admin/formation');
       }
     );
