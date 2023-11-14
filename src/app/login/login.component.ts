@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
         if(this.authSerivce.firstLogin==0)
         {
           this.router.navigateByUrl('/admin/updatePassword');
-          console.log('test 2')
         }
         else
         {

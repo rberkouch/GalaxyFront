@@ -17,15 +17,15 @@ export class SujetComponent implements OnInit {
   sujets!: any[];
   modalReference: any;
   notificationMessage: string = '';
-  sujet!:Sujet;
-  notification!:notification;
+  sujet!: Sujet;
+  notification!: notification;
   constructor(
     private sujetService: SujetService,
     public authService: AuthService,
     private router: Router,
     private modalService: NgbModal,
     private notificationService: NotificationService,
-    private userService:UserService
+    private userService: UserService
   ) {}
   ngOnInit(): void {
     if (
@@ -36,7 +36,7 @@ export class SujetComponent implements OnInit {
     } else {
       this.getSujetsByUsername();
     }
-    this.notification=new notification();
+    this.notification = new notification();
   }
   getSujets() {
     this.sujetService.getSujets().subscribe((data) => {
@@ -71,44 +71,31 @@ export class SujetComponent implements OnInit {
     this.router.navigateByUrl('/admin/affectersujet');
   }
 
-  openModal(content: any,sujet:Sujet) {
-    this.sujet=sujet;
-    
-     this.userService.get(this.authService.username).subscribe(
-      response=>this.notification.utilisateur=response
-    )
-    
+  openModal(content: any, sujet: Sujet) {
+    this.sujet = sujet;
+
+    this.userService
+      .get(this.authService.username)
+      .subscribe((response) => (this.notification.utilisateur = response));
+
     this.modalReference = this.modalService.open(content, { centered: true });
   }
 
   saveNotification() {
-    console.log('Contenu du textarea : ', this.notificationMessage);
-    console.log('la valeur de id est  : ', this.sujet.id);
-    
-   
-   this.notification.message=this.notificationMessage;
-   this.notification.sujet=this.sujet;
-   this.notification.type="suppression"
-    this.notificationService.addNotification(this.notification).subscribe(
-      response=>{
+    this.notification.message = this.notificationMessage;
+    this.notification.sujet = this.sujet;
+    this.notification.type = 'suppression';
+    this.notificationService
+      .addNotification(this.notification)
+      .subscribe((response) => {
         this.modalReference.close('Save click');
-        console.log("ajout ok");
-        this.sujet.statut=3
-        this.sujetService.updateSujet(this.sujet).subscribe(
-          response=>{
-            console.log('modif sujet ok');
-            this.getSujets();
-          }
-        )
-      }
-    )
-    
+        this.sujet.statut = 3;
+        this.sujetService.updateSujet(this.sujet).subscribe((response) => {
+          this.getSujets();
+        });
+      });
   }
-  afficherButton(sujet:Sujet)
-  {
-    console.log('execution de la methode')
-    console.log(sujet.statut)
-    console.log(sujet.statut==3)
-    return sujet.statut==3;
+  afficherButton(sujet: Sujet) {
+    return sujet.statut == 3;
   }
 }
