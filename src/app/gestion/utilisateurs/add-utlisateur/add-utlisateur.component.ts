@@ -55,7 +55,7 @@ export class AddUtlisateurComponent {
     let user: User = this.newUserFormGroup.value;
     this.userService.addUser(user).subscribe({
       next: (data: any) => {
-        alert('User has been successfully saved!');
+        alert('Ajout effectué avec succès!');
         //this.newCustomerFormGroup.reset();
         this.router.navigateByUrl('/admin/utilisateurs');
       },
