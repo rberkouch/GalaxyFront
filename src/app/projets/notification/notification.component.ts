@@ -28,7 +28,7 @@ export class NotificationComponent implements OnInit {
   {
     let sujet =notification.sujet;
     sujet.statut=0;
-    this.sujetService.updateSujet(sujet).subscribe(
+    this.sujetService.updateSujetStatus(sujet).subscribe(
       response=>{
         console.log('modif sujet ok');
       }
@@ -57,7 +57,7 @@ export class NotificationComponent implements OnInit {
 
     let sujet =notification.sujet;
     sujet.statut=2;
-    this.sujetService.updateSujet(sujet).subscribe(
+    this.sujetService.updateSujetStatus(sujet).subscribe(
       response=>{
         console.log('modif sujet ok');
       }
@@ -78,7 +78,7 @@ export class NotificationComponent implements OnInit {
   {
     let sujet =notification.sujet;
     sujet.statut=2;
-    this.sujetService.updateSujet(sujet).subscribe(
+    this.sujetService.updateSujetStatus(sujet).subscribe(
       response=>{
         console.log('modif sujet ok');
       }
@@ -98,7 +98,7 @@ export class NotificationComponent implements OnInit {
   {
     let sujet =notification.sujet;
     sujet.statut=0;
-    this.sujetService.updateSujet(sujet).subscribe(
+    this.sujetService.updateSujetStatus(sujet).subscribe(
       response=>{
         console.log('modif sujet ok');
       }

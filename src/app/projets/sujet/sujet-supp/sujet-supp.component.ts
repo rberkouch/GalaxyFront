@@ -39,7 +39,7 @@ export class SujetSuppComponent implements OnInit{
   goToPageActiverSujet(sujet:Sujet)
   {
     sujet.statut=2
-    this.sujetService.updateSujet(sujet).subscribe(
+    this.sujetService.updateSujetStatus(sujet).subscribe(
       response=>{
         console.log('activation sujet ok');
         this.getSujets();

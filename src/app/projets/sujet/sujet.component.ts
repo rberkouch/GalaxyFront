@@ -90,7 +90,7 @@ export class SujetComponent implements OnInit {
       .subscribe((response) => {
         this.modalReference.close('Save click');
         this.sujet.statut = 3;
-        this.sujetService.updateSujet(this.sujet).subscribe((response) => {
+        this.sujetService.updateSujetStatus(this.sujet).subscribe((response) => {
           this.getSujets();
         });
       });

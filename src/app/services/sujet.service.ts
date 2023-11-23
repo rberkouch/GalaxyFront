@@ -57,6 +57,11 @@ export class SujetService {
   public updateSujet(sujet: Sujet): Observable<any> {
     return this.http.put(environment.backendHost + '/sujets', sujet);
   }
+
+  public updateSujetStatus(sujet: Sujet): Observable<any> {
+    return this.http.patch(environment.backendHost + '/update_status_sujets', sujet);
+  }
+
   public affectSujetToUser(idSujet: string, idUser: string): Observable<any> {
     const formData = new FormData();
     formData.append('idSujet', idSujet);
