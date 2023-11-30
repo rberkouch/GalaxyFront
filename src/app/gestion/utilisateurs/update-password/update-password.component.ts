@@ -32,30 +32,29 @@ export class UpdatePasswordComponent implements OnInit {
     });
   }
 
-  confirmationPass()
-  {
-    //this.pass = this.formUpdatePass.value.password;
-    //this.Confirmpass = this.formUpdatePass.value.passwordConfirm;
-    
-    const passwordConfirm = this.el.nativeElement.querySelector('#passwordConfirm');
-  if (this.pass!=this.Confirmpass) {
-   // console.log('les deux mot de passe ne sont pas les memes')
-   this.erreurMessage = 'Les mots de passe ne correspondent pas.';
-    passwordConfirm.focus();
-  }
-  else
-  {
-    this.erreurMessage = null; 
-  }
-  }
-
   updatePass()
   {
-    this.userServive.changePassword(this.pass).subscribe(
-      response=>{
-        this.router.navigateByUrl('/admin/formation');
-      }
-    );
+
+    const passwordConfirm = this.el.nativeElement.querySelector('#passwordConfirm');
+    if (this.pass!=this.Confirmpass) {
+     this.erreurMessage = 'Les mots de passe ne correspondent pas.';
+    }
+    else
+    {
+      this.erreurMessage = null; 
+      if(this.pass==this.Confirmpass)
+    {
+      this.userServive.changePassword(this.pass).subscribe(
+        response=>{
+          this.router.navigateByUrl('/admin/formation');
+        }
+      );
+    }
+    }
+
+
+    
+    
   }
 
   valeurPass()

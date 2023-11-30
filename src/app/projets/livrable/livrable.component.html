@@ -124,7 +124,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let a of avis">
-            <td>{{a.utilisateur.firstName}}</td>
+            <td >{{a.utilisateur.firstName}}</td>
             <td>{{a.texteAvis}}</td>
             <td><button *ngIf="a.utilisateur.username==connectedUser" (click)="deleteAvis(a.id)" class="btn btn-danger">
               <i class="bi bi-trash"></i>

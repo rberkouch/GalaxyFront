@@ -126,7 +126,12 @@ export class LivrableComponent implements OnInit {
     this.affichageAjout=true;
     this.idLivrable=id;
     this.userService.get(this.authService.username).subscribe(
-      response=>this.avisAjout.utilisateur=response
+      
+      response=>
+      {
+        this.avisAjout.utilisateur=response
+        console.log('user ok'+ this.avisAjout.utilisateur.firstName)
+      }
     )
   }
   else

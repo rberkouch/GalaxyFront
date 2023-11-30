@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { interval } from 'rxjs';
+import { interval, take } from 'rxjs';
 import { Level } from 'src/app/enum/level.enum';
 import { notification } from 'src/app/model/notification';
 import { User } from 'src/app/model/user';
@@ -61,8 +61,9 @@ export class AddSujetComponent implements OnInit {
           }
         )
         this.showAlert = true;
-        interval(3000).subscribe(() => {
+        interval(3000).pipe(take(1)).subscribe(() => {
           this.showAlert = false;
+          console.log("test")
           this.router.navigateByUrl('admin/sujet')
         })
         
