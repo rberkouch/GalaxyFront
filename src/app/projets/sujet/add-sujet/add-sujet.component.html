@@ -126,6 +126,20 @@
                       </span>
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="form-outline mb-4">
+                      <label class="form-label" for="profile">Technologie</label>
+                      <select class="form-control" formControlName="profile">
+                        <option *ngFor="let p of profiles" [ngValue]="p">{{ p.libelle }}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!--<div class="mb-3" *ngIf="afficherProfile==true">
+                    <label for="profile" class="form-label">Profil de l'utilisateur :</label>
+                    <select class="form-control" formControlName="profile">
+                      <option *ngFor="let p of profiles" [ngValue]="p">{{ p.libelle }}</option>
+                    </select>
+                  </div>-->
                   <button type="reset" class="btn btn-danger btn-lg ms-2" (click)="cancelSaveSujet()">Annuler</button>
                   <button [disabled]="!sujetForm.valid" class="btn btn-success btn-lg ms-2">Ajouter</button>
                   <ngb-alert *ngIf="showAlert" [dismissible]="true" type="success">

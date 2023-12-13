@@ -44,7 +44,7 @@ export class AddLivrableComponent implements OnInit {
       repoName: this.fb.control(null, [Validators.required]),
       gitUrl: this.fb.control(null, [Validators.required]),
       utilisateurs: this.fb.array([]),
-      sujet: this.fb.control(null),
+      sujet: this.fb.control(null,[Validators.required]),
     });
     this.userService.get(this.authService.username).subscribe((data) => {
       this.utilisateur = data;

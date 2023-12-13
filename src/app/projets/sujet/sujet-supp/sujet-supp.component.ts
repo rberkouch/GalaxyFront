@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PaginationInstance } from 'ngx-pagination';
 import { Sujet } from 'src/app/model/sujet';
 import { AuthService } from 'src/app/services/auth.service';
 import { SujetService } from 'src/app/services/sujet.service';
@@ -12,6 +13,16 @@ import { SujetService } from 'src/app/services/sujet.service';
 export class SujetSuppComponent implements OnInit{
 
   sujets!: any[];
+  //une variable pour stocker la page actuelle
+  p: number = 1;
+  //nombre element par page
+  itemsPerPage: number = 8;
+  // instance de pagination
+  config: PaginationInstance = {
+    id: 'custom',
+    itemsPerPage: this.itemsPerPage,
+    currentPage: this.p
+  };
 
   constructor(
     private sujetService: SujetService,

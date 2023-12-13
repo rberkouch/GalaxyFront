@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbAlertConfig } from '@ng-bootstrap/ng-bootstrap';
+import { PaginationInstance } from 'ngx-pagination';
 import { Observable, catchError, interval, throwError } from 'rxjs';
 import { avis } from 'src/app/model/avis';
 import { Livrable } from 'src/app/model/livrable';
@@ -16,7 +17,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./livrable.component.css'],
 })
 export class LivrableComponent implements OnInit {
-  livrables!: Observable<Array<Livrable>>;
+  livrables!: any;
   livrables2!: any;
   errorMessage!: string;
   searchFormGroup: FormGroup | undefined;
@@ -27,6 +28,16 @@ export class LivrableComponent implements OnInit {
   affichageAjout=false;
   showAlert = false;
   connectedUser!:string;
+  //une variable pour stocker la page actuelle
+  p: number = 1;
+  //nombre element par page
+  itemsPerPage: number = 8;
+  // instance de pagination
+  config: PaginationInstance = {
+    id: 'custom',
+    itemsPerPage: this.itemsPerPage,
+    currentPage: this.p
+  };
 
   constructor(
     private livrableService: LivrableService,
@@ -79,6 +90,10 @@ export class LivrableComponent implements OnInit {
         this.errorMessage = err.message;
         return throwError(err);
       })
+    ).subscribe(
+      response=>{
+        this.livrables=response
+      }
     );
   }
 

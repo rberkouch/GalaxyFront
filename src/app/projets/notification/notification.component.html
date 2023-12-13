@@ -5,14 +5,17 @@
       <tr>
         <th scope="col">Titre sujet</th>
         <th scope="col">Type</th>
+        <th>Formateur</th>
         <th scope="col">Action 1</th>
         <th scope="col">Action 2</th>
+        <th scope="col">Action 3</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let notif of notifications">
         <td>{{notif.sujet.title}}</td>
         <td>{{notif.type}}</td>
+        <td>{{notif.utilisateur.firstName}}</td>
         <td><button *ngIf="notif.type=='suppression'; else ajout" type="button" class="btn btn-success"
             (click)="validerSuppression(notif)">Valider la Suppression</button>
           <ng-template #ajout>
@@ -27,6 +30,13 @@
 
           </ng-template>
         </td>
+        <td><button *ngIf="notif.type=='suppression'; else consulterDoc" type="button" class="btn btn-info"
+          (click)="openModal(modalContent,notif.message)">Afficher la Raison de la Suppression</button>
+        <ng-template #consulterDoc>
+          <button type="button" class="btn btn-info" (click)="consulterSujet(notif.sujet)">Consulter le Sujet</button>
+
+        </ng-template>
+      </td>
       </tr>
 
     </tbody>
@@ -35,5 +45,18 @@
 
 <ng-template #ajout>
   <button type="button" class="btn btn-primary">Valider l'ajout</button>
+
+</ng-template>
+
+<ng-template #modalContent>
+  <div class="modal-header">
+    <h4 class="modal-title">La raison de la suppression</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modalReference.dismiss('Close click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+   <p>{{message}}</p>
+  </div>
 
 </ng-template>

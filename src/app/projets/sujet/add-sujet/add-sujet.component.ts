@@ -3,10 +3,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { interval, take } from 'rxjs';
 import { Level } from 'src/app/enum/level.enum';
+import { Profile } from 'src/app/model/Profile';
 import { notification } from 'src/app/model/notification';
 import { User } from 'src/app/model/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { ProfileService } from 'src/app/services/profile.service';
 import { SujetService } from 'src/app/services/sujet.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -20,6 +22,7 @@ export class AddSujetComponent implements OnInit {
   sujetForm!: FormGroup;
   utilisateur!:User;
   showAlert = false;
+  profiles!:Profile[]
   
   constructor(
     private sujetService: SujetService,
@@ -27,7 +30,8 @@ export class AddSujetComponent implements OnInit {
     public authService: AuthService,
     private router: Router,
     private notificationService:NotificationService,
-    private userService:UserService
+    private userService:UserService,
+    private profileService:ProfileService
   ) {}
   
   ngOnInit(): void {
@@ -44,7 +48,9 @@ export class AddSujetComponent implements OnInit {
       level: this.fb.control(null, [Validators.required]),
       developerRating: this.fb.control(null, [Validators.required]),
       stackTechnique: this.fb.control(null, [Validators.required]),
+      profile: this.fb.control(null, [Validators.required]), 
     });
+    this.findAllProfiles();
   }
   saveSujet() {
     this.sujetService
@@ -72,5 +78,10 @@ export class AddSujetComponent implements OnInit {
   }
   cancelSaveSujet() {
     this.router.navigateByUrl('/admin/sujet');
+  }
+  findAllProfiles() {
+    this.profileService.getProfiles().subscribe((data) => {
+      this.profiles = data;
+    });
   }
 }

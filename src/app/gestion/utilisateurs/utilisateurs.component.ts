@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { PaginationInstance } from 'ngx-pagination';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
@@ -14,6 +15,16 @@ export class UtilisateursComponent implements OnInit {
   users!: Observable<Array<User>>;
   errorMessage!: string;
   searchFormGroup: FormGroup | undefined;
+  //une variable pour stocker la page actuelle
+  p: number = 1;
+  //nombre element par page
+  itemsPerPage: number = 8;
+  // instance de pagination
+  config: PaginationInstance = {
+    id: 'custom',
+    itemsPerPage: this.itemsPerPage,
+    currentPage: this.p
+  };
   constructor(
     private userService: UserService,
     private fb: FormBuilder,

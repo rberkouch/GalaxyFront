@@ -39,6 +39,7 @@ import { AffecterSujetComponent } from './projets/sujet/affecter-sujet/affecter-
 import { NotificationComponent } from './projets/notification/notification.component';
 import { SujetSuppComponent } from './projets/sujet/sujet-supp/sujet-supp.component';
 import { UpdatePasswordComponent } from './gestion/utilisateurs/update-password/update-password.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { UpdatePasswordComponent } from './gestion/utilisateurs/update-password/
     ReactiveFormsModule,
     PdfViewerModule,
     NgbModule,
+    NgxPaginationModule,
     
     
   ],

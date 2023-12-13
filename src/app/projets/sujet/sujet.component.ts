@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { SujetService } from 'src/app/services/sujet.service';
 import { UserService } from 'src/app/services/user.service';
+import { PaginationInstance } from 'ngx-pagination';
 
 @Component({
   selector: 'app-sujet',
@@ -19,6 +20,16 @@ export class SujetComponent implements OnInit {
   notificationMessage: string = '';
   sujet!: Sujet;
   notification!: notification;
+  //une variable pour stocker la page actuelle
+  p: number = 1;
+  //nombre element par page
+  itemsPerPage: number = 8;
+  // instance de pagination
+  config: PaginationInstance = {
+    id: 'custom',
+    itemsPerPage: this.itemsPerPage,
+    currentPage: this.p
+  };
   constructor(
     private sujetService: SujetService,
     public authService: AuthService,
@@ -41,6 +52,7 @@ export class SujetComponent implements OnInit {
   getSujets() {
     this.sujetService.getSujets().subscribe((data) => {
       this.sujets = data;
+      //console.log(data)
     });
   }
   getSujetsByUsername() {

@@ -1,3 +1,4 @@
+import { Profile } from './Profile';
 import { DocumentProjet } from './document-projet';
 
 export class Sujet extends DocumentProjet {
@@ -6,5 +7,6 @@ export class Sujet extends DocumentProjet {
   stackTechnique!: string;
   expectedDelivery!: string;
   developerRating!: string;
-  statut!:number
+  statut!:number;
+  profile!:Profile;
 }

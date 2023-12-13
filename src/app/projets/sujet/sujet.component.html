@@ -5,14 +5,14 @@
   <div id="etus" class="text-center container py-5">
     <h1><strong>Les sujets</strong></h1>
     <div class="row">
-      <div class="col-md-3 my-3" *ngFor="let s of sujets">
+      <div class="col-md-3 my-3" *ngFor="let s of sujets | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
         <div class="card">
           <h5 class="card-header">
             Niveau : {{s.level}}<br>Durée: {{s.timeConstraint}}
             jour(s)
           </h5>
           <div class="card-body">
-            <h2 class="card-title mb-3">{{s.title}}</h2>
+            <h2 class="card-title mb-3">{{s.title}} <span *ngIf="s.profile!=null">({{s.profile.libelle}})</span></h2>
           </div>
           <div class="card-footer">
             <div class="btn-group btn-group-sm" role="group">
@@ -28,6 +28,10 @@
           </div>
         </div>
       </div>
+      <pagination-controls (pageChange)="p = $event"
+                     previousLabel="Précédent"
+                     nextLabel="Suivant">
+</pagination-controls>
     </div>
 
   </div>

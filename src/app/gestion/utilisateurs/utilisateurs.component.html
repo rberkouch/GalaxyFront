@@ -39,7 +39,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let c of users | async">
+            <tr *ngFor="let c of listCustomers | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
               <td>
                 <img [src]="'https://robohash.org/' + c.userId" width="50" alt="">
               </td>
@@ -69,8 +69,15 @@
           </tbody>
         </table>
       </div>
+       
     </div>
   </ng-container>
+  <div class="text-center">
+  <pagination-controls (pageChange)="p = $event"
+                     previousLabel="Précédent"
+                     nextLabel="Suivant">
+</pagination-controls>
+</div>
   <ng-template #failureOrLading>
     <ng-container *ngIf="errorMessage; else loading">
       <div class="text-danger">

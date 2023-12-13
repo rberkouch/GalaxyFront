@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Route, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { notification } from 'src/app/model/notification';
+import { Sujet } from 'src/app/model/sujet';
 import { NotificationService } from 'src/app/services/notification.service';
 import { SujetService } from 'src/app/services/sujet.service';
 
@@ -12,16 +15,22 @@ import { SujetService } from 'src/app/services/sujet.service';
 export class NotificationComponent implements OnInit {
 
   notifications!:notification[];
-
+  modalReference: any;
+  message!:string;
   
 
-  constructor(private notificationService:NotificationService,private sujetService:SujetService)
+  constructor(
+    private notificationService:NotificationService,
+    private sujetService:SujetService,
+    private modalService: NgbModal,
+    private router:Router)
   {
 
   }
   ngOnInit(): void {
     this.notifications=[];
     this.afficherNotification();
+    this.message="";
   }
 
   validerSuppression(notification:notification)
@@ -112,6 +121,18 @@ export class NotificationComponent implements OnInit {
         this.notificationService.actualiser();
       }
     )
+  }
+  openModal(content: any,messageNotif:string) {
+   this.message=messageNotif;
+    this.modalReference = this.modalService.open(content, { centered: true });
+  }
+
+  consulterSujet(sujet:Sujet)
+  {
+    console.log(sujet.title);
+    localStorage.removeItem('editSujetId');
+    localStorage.setItem('editSujetId', sujet.id.toString());
+    this.router.navigateByUrl('/admin/affichersujet/' + sujet.id);
   }
 
 }
