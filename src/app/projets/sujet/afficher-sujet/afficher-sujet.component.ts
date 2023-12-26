@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ElementRef, ViewChild} from '@angular/core';
 import { Sujet } from 'src/app/model/sujet';
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import { Router } from '@angular/router';
 import { SujetService } from 'src/app/services/sujet.service';
 import { AuthService } from 'src/app/services/auth.service';
+import html2canvas from 'html2canvas';
+import * as html2pdf from 'html2pdf.js';
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -19,7 +21,9 @@ export class AfficherSujetComponent implements OnInit {
     private sujetService: SujetService,
     public authService: AuthService,
     private router: Router
-  ) {}
+  ) {
+    
+  }
   ngOnInit(): void {
     let sujetId = localStorage.getItem('editSujetId');
     if (!sujetId) {
@@ -80,6 +84,7 @@ export class AfficherSujetComponent implements OnInit {
         {
           text: `${sujet.description}`,
           style: 'contentDescription',
+          raw: true,
         },
         {
           text: '\nFonctionnalités attendues :',
@@ -142,5 +147,98 @@ export class AfficherSujetComponent implements OnInit {
   }
   goToPageDisplayAllSujets() {
     this.router.navigateByUrl('/admin/sujet');
+  }
+
+  async generatePDF2() {
+    const htmlContainer = document.getElementById('htmlContainer');
+
+    if (htmlContainer) {
+      const containerHeight = htmlContainer.scrollHeight; // Utiliser scrollHeight pour obtenir la hauteur totale
+      const sliceHeight = 1800;
+
+      const images = [];
+
+      for (let i = 0; i < containerHeight; i += sliceHeight) {
+        const canvas = await html2canvas(htmlContainer, {
+          height: Math.min(sliceHeight, containerHeight - i),
+          y: -i,
+        });
+
+        const imgData = canvas.toDataURL('image/png');
+        images.push(imgData);
+      }
+
+      const docDefinition = {
+        content: images.map(imgData => ({
+          image: imgData,
+          width: 800,
+        })),
+      };
+
+      pdfMake.createPdf(docDefinition).open();
+    }
+  }
+  @ViewChild('htmlContainer22', { static: true }) htmlContainer!: ElementRef;
+  generatePDF3() {
+    const pdfContent = this.htmlContainer.nativeElement;
+  
+    if (pdfContent) {
+      const options = {
+        margin: 10,
+        filename: 'sujet.pdf',
+        html2canvas: { scale: 0.98 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' },
+        pagebreak: { mode: 'avoid-all' },
+      };
+  
+      // Copie du contenu HTML pour éviter de modifier l'original
+      const modifiedContent = pdfContent.cloneNode(true);
+  
+      // Redimensionner les images
+      this.resizeImages(modifiedContent);
+
+      
+  
+      // Générer le PDF avec le contenu modifié
+     /* html2pdf(modifiedContent, options).outputPdf((pdf: any) => {
+        // Ouvre le PDF dans une nouvelle fenêtre
+        window.open(pdf.output('bloburl'), '_blank');
+      });*/
+      //html2pdf().set(options).from(modifiedContent).save();
+
+
+
+      html2pdf().from(modifiedContent).set(options).toPdf().get('pdf').then((pdf:any) => {
+        var totalPages = pdf.internal.getNumberOfPages();
+    
+        for (let i = 1; i <= totalPages; i++) {
+          // set footer to every page
+          pdf.setPage(i);
+          // set footer font
+          pdf.setFontSize(10);
+          pdf.setTextColor(150);
+          // this example gets internal pageSize just as an example to locate your text near the borders in case you want to do something like "Page 3 out of 4"
+          pdf.text(10,                
+            pdf.internal.pageSize.getHeight() - 10, 'INTI FORMATION - www.intiformation.fr');
+    
+          
+        }
+       
+      }).save();
+    }
+  }
+
+  
+  private resizeImages(container: HTMLElement): void {
+    const images = container.querySelectorAll('img');
+  
+    images.forEach((image: HTMLImageElement) => {
+      // Ajuster la taille selon vos besoins
+      const newWidth = image.width * 0.7;
+      const newHeight = image.height * 0.7;
+  
+      image.width = newWidth;
+      image.height = newHeight;
+    });
   }
 }

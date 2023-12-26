@@ -75,7 +75,7 @@ export class SujetComponent implements OnInit {
     this.router.navigateByUrl('/admin/affichersujet/' + sujet.id);
   }
   goToPageAddSujet() {
-    this.router.navigateByUrl('/admin/addsujet');
+    this.router.navigateByUrl('/admin/addsujet2');
   }
   goToPageAffectSujet(sujet: Sujet) {
     localStorage.removeItem('editSujetId');

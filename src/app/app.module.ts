@@ -40,6 +40,8 @@ import { NotificationComponent } from './projets/notification/notification.compo
 import { SujetSuppComponent } from './projets/sujet/sujet-supp/sujet-supp.component';
 import { UpdatePasswordComponent } from './gestion/utilisateurs/update-password/update-password.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AddSujet2Component } from './projets/sujet/add-sujet2/add-sujet2.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [
@@ -74,6 +76,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NotificationComponent,
     SujetSuppComponent,
     UpdatePasswordComponent,
+    AddSujet2Component,
   ],
   imports: [
     BrowserModule,
@@ -84,6 +87,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     PdfViewerModule,
     NgbModule,
     NgxPaginationModule,
+    AngularEditorModule,
     
     
   ],

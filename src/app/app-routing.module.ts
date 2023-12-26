@@ -29,6 +29,7 @@ import { AffecterSujetComponent } from './projets/sujet/affecter-sujet/affecter-
 import { NotificationComponent } from './projets/notification/notification.component';
 import { SujetSuppComponent } from './projets/sujet/sujet-supp/sujet-supp.component';
 import { UpdatePasswordComponent } from './gestion/utilisateurs/update-password/update-password.component';
+import { AddSujet2Component } from './projets/sujet/add-sujet2/add-sujet2.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -63,6 +64,7 @@ const routes: Routes = [
       { path: 'livrable', component: LivrableComponent },
       { path: 'addlivrable', component: AddLivrableComponent },
       { path: 'notifications', component: NotificationComponent },
+      { path: 'addsujet2', component: AddSujet2Component },
       
 
     ],

@@ -1,14 +1,15 @@
-<section style="background-color: #eee;">
+
+<section style="background-color: #eee;" id="htmlContainer">
   <div id="etus" class="container-fluid pt-2">
     <div class="row">
       <div class="col-md-8">
-        <div class="card">
+        <div #htmlContainer22 class="card">
+          <div class="green-bar"></div>
           <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
             <div class="mask">
-              <div class="d-flex justify-content-start align-items-end h-100">
-                <h5><img src="/assets/img/logo_inti.png" width="120" height="120" alt="Logo INTI"></h5>
-              </div>
-              <div>
+              <div class="d-flex justify-content-start align-items-center h-100 ml-2">
+                <!-- Ajout de la classe "ml-2" pour la marge gauche de 2 cm -->
+                <img src="/assets/img/logo_inti.png" width="120" height="120" alt="Logo INTI">
               </div>
             </div>
             <div class="hover-overlay">
@@ -16,33 +17,54 @@
             </div>
           </div>
           <div class="card-body">
-            <h2 class="card-title">{{sujet.title}}</h2>
-            <h6 class="card-title">{{sujet.timeConstraint}} jour(s)</h6>
-            <br><br><br><br><br><br><br><br><br><br><br>
-            <h6 class="card-title" [align]="alignement" style="color:green;">Titre du Projet :</h6>
-            <p [align]="alignement">{{sujet.title}}</p>
-            <h6 class="card-title" [align]="alignement" style="color:green;">Contraintes de temps :</h6>
-            <p [align]="alignement">Ce projet est prévu pour être réalisé en {{sujet.timeConstraint}} jour(s). Il est
-              important de bien gérer le temps et de
-              prioriser les fonctionnalités essentielles pour assurer une livraison réussie dans les délais impartis.
-            </p>
-            <h6 class="card-title" [align]="alignement" style="color:green;">Description du Projet :</h6>
-            <p [align]="alignement">{{sujet.description}}</p>
-            <h6 class="card-title" [align]="alignement" style="color:green;">Fonctionnalités attendues :</h6>
-            <p [align]="alignement">{{sujet.functionality}}</p>
-            <h6 class="card-title" [align]="alignement" style="color:green;">Exigences techniques :</h6>
-            <p [align]="alignement">{{sujet.stackTechnique}}</p>
-            <h6 class="card-title" [align]="alignement" style="color:green;">Livraison attendue :</h6>
-            <p [align]="alignement">{{sujet.expectedDelivery}}</p>
-            <h6 class="card-title" [align]="alignement" style="color:green;">Évaluation du développeur :</h6>
-            <p [align]="alignement">{{sujet.developerRating}}</p>
-            <button type="button" class="btn btn-warning me-1" (click)="goToPageDisplayAllSujets()">Retour vers la liste
-              des
-              sujets</button>
+            <h1 class="card-title text-center" style="color: #efb145; font-family: 'Raleway', sans-serif; font-weight: bold;">{{ sujet.title }}</h1>
+            <h6 class="card-subtitle mb-4 text-muted text-center">{{ sujet.timeConstraint }} jour(s)</h6>
+      
+            <div class="project-details" style="margin-top: 3cm;">
+              <div class="project-detail">
+                <h6 style="color:#016965; font-weight: bold; font-family: 'Raleway';">Titre du Projet :</h6>
+                <p>{{ sujet.title }}</p>
+              </div>
+      
+              <div class="project-detail">
+                <h6 style="color:#016965; font-weight: bold; font-family: 'Raleway';">Contraintes de temps :</h6>
+                <p>
+                  Ce projet est prévu pour être réalisé en {{ sujet.timeConstraint }} jour(s). Il est important de bien gérer
+                  le temps et de prioriser les fonctionnalités essentielles pour assurer une livraison réussie dans les délais
+                  impartis.
+                </p>
+              </div>
+      
+              <div class="project-detail">
+                <h6 style="color:#016965; font-weight: bold; font-family: 'Raleway';">Description du Projet :</h6>
+                <p [innerHTML]="sujet.description"></p>
+              </div>
+      
+              <div class="project-detail">
+                <h6 style="color:#016965; font-weight: bold; font-family: 'Raleway';">Fonctionnalités attendues :</h6>
+                <p [innerHTML]="sujet.functionality"></p>
+              </div>
+      
+              <div class="project-detail">
+                <h6 style="color:#016965; font-weight: bold; font-family: 'Raleway';">Exigences techniques :</h6>
+                <p [innerHTML]="sujet.stackTechnique"></p>
+              </div>
+      
+              <div class="project-detail">
+                <h6 style="color:#016965; font-weight: bold; font-family: 'Raleway';">Livraison attendue :</h6>
+                <p [innerHTML]="sujet.expectedDelivery"></p>
+              </div>
+      
+              <div class="project-detail">
+                <h6 style="color:#016965; font-weight: bold; font-family: 'Raleway';">Évaluation du développeur :</h6>
+                <p [innerHTML]="sujet.developerRating"></p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="btn-group btn-group-sm col-md-4" role="group">
+      
+    <!-- <div class="btn-group btn-group-sm col-md-4" role="group">
         <div class="row">
           <div class="col-sm">
             <button type="button" class="btn btn-secondary me-1" (click)="generatePDF(sujet)"><span
@@ -59,6 +81,20 @@
           <div class="col-sm">
             <button type="button" class="btn btn-secondary" (click)="generatePDF(sujet,'print')"><span
                 class="bi bi-file-pdf"></span>Imprimer</button>
+          </div>
+        </div>
+      </div>--> 
+      <div class="btn-group btn-group-sm col-md-4" role="group">
+        <div class="row">
+          <div class="col-sm">
+            <button type="button" class="btn btn-secondary me-1" (click)="generatePDF3()"><span
+                class="bi bi-file-pdf"></span>Générer PDF</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <button type="button" class="btn btn-warning me-1" (click)="goToPageDisplayAllSujets()">Retour vers la liste des
+              sujets</button>
           </div>
         </div>
       </div>
